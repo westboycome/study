@@ -1,0 +1,454 @@
+TextView 现实文本框控件
+	androd:id  控件ID
+	androd:layout_width 宽度
+	androd:layout_height 高度
+	androd:text 内容
+	androd:textSize 大学
+	androd:textColor 颜色
+	androd:background 背景
+	
+EditText  输入文本框
+	androd:id  控件ID
+	androd:layout_width 宽度
+	androd:layout_height 高度
+	androd:text 内容
+	androd:textSize 大学
+	androd:textColor 颜色
+	androd:background 背景
+	androd:hint 输入提示文本
+	androd:inputType 输入文本类型
+	
+	wrap_content 包裹实际文本内容
+	match——parent 当前控件铺满父类容器
+	fill——parent 当前控件铺满父类容器
+	
+ImageView 显示图片
+ src：引用一个图标的时候
+ background：填充一个局面的时候
+ 
+ Button 可以设置文本内容
+ ImageButton 有src属性
+ 
+ Onclick 监听
+ 匿名内部类实现监听
+ 外部类实现
+ 接口实现
+ 
+ textview滚动实现
+ 
+ AutoCompleteTextView
+ 	动态匹配搜索内容
+ 	android:completionThreshold="3"
+ 	
+ MultiAutoCompleteTextView
+ 动态匹配多个搜索内容
+ 
+ ToggleButton
+ checked textoff、texton
+ 选中和未选中
+ 
+ radiogroup 
+ 	orientation= vertical垂直 horizontal水平
+ 	
+ 	LinearLayout--线型布局
+ 	gravity:  --对整个容器的设置
+ 	layout_gravity:	--对自身的设置
+ 	layout_weight: --比重大小
+ 	vertical 垂直
+ 	horizontal水平
+ 	center_vertical 垂直居中
+ 	center_horizontal 水平居中
+ 	center 居中
+ 	right 居右
+ 	left 居左
+	bottom 居下
+	
+	RelativeLayout--相对布局
+				android:layout_alignParentLeft="true" --子类控件相对当前父类容器靠左边
+        android:layout_alignParentTop="true" --子类控件相对当前父类容器靠上边
+        android:layout_marginLeft="41dp"  ---子类控件距离当前父类容器左边的距离
+        android:layout_marginTop="30dp"    --子类控件距离当前父类容器上边的距离
+        android:layout_centerInParent="true"--子类控件相对当前父类容器水平居中
+        android:layout_centerVertical="true"---子类控件相对当前父类容器垂直居中
+        android:layout_centerHorizontal="true"
+	
+				android:layout_below="@+id/button1" ---该控件位于给定id控件的底部
+        android:layout_toRightOf="@+id/button1" ---该控件位于给定id控件的右边
+        android:layout_above="@+id/button1"   ---该控件位于给定id控件的上边
+        android:layout_toLeftOf="@+id/button1" ---该控件位于给定id控件的左边
+        android:layout_alignBaseline="@+id/button1" --该控件的内容与给定id控件的内容在一条线上
+        android:layout_alignBottom="" ---该控件的底部边缘与给定id控件的底部边缘对齐
+        android:layout_alignLeft=""---该控件的左边缘与给定id控件的左边缘对齐
+        android:layout_alignRight="" ---该控件的右边缘与给定id控件的右边缘对齐
+        android:layout_alignTop=""---该控件的上边缘与给定id控件的上边缘对齐
+	布局间可以相互套用
+	
+framelayout  贞布局
+
+absoluteLayout 绝对布局
+	layout_x
+	layout_y
+	
+	
+tableLayout 表格布局
+	  android:collapseColumns="1,2" 隐藏
+    android:stretchColumns="*"> 填满
+    android:shrinkColumns="" 收缩
+    layout_column 放在第几列
+    layout_span  占用几列
+    
+四大组件
+	activity
+		创建
+		生命周期 
+			onCreate() 创建
+			onStart()运行
+			onResume()获取焦点
+			onPause()失去焦点
+			onStop()暂停
+			onDestroy()销毁
+			onRestart()
+			
+			
+	Service 
+	Broadcast Receiver 广播接收者 
+	content Provider 数据库的访问
+	
+   Intent 页面的跳转
+   SDK文档的使用
+   文本框样式
+    
+    
+    
+Android攻城狮的第二门课（第1季）
+ AndroidManifest配置文件
+    权限 <uses-permission>
+    自定义权限
+    
+    ListView的使用
+    适配器：连接数据源和视图界面的桥梁
+    ArrayyAdapter数组
+    		集合或数组
+    SimpleAdapter简单
+    		复杂的
+    new SimpleAdapter（context,data,resuorce,form,to）;
+    context:上下文
+    data ： 数据源（List<? extends Map<String ,?>> data）一个Mao所组成的List 集合
+    				每一个Map都会去对应ListView列表中的一行
+    				每一个Map中的健必须包含所有在from中所指定的健
+    resource：列表项的布局文件ID
+    from：Map中的健名
+    to：绑定数据视图中的ID
+    
+  OnItemClickListener 单个条目的点击事件
+  OnScrollListener 监测滚动的变化
+  
+  显示当前日期
+  DatePicker  
+  OnDateChangedListener onDateChange()
+  DatePickerDialog 直接显示在屏幕上
+  init()
+  
+  TimePicker
+  OnTimeChangedListener onTimeChange()
+  TimePickerDialog  
+  setOnTimeChangedListener()
+    
+  GridView  
+  
+  Spinner
+   数据源
+   适配器
+   列表样式
+   监听器 
+   
+   progressbar 进度条
+   显示风格: style= 大 小 横着
+   分类
+   标题设置：true false
+   属性：
+   		max---最大显示进度
+   		progress --第一显示进度
+   		secondaryProgress ---第二显示进度
+   		indeterminate ---是否精确显示 
+   方法： set get Ctrl +１
+   使用　
+   自定义样式
+   
+   WebView 
+   requestFocus 获得焦点 
+   
+   Fragment
+    add()
+    remove()
+    
+    commit()
+    
+    ViewPager
+    适配器
+    PagerAdapter 数据源：List<View>
+    	getCount()
+    	isViewFromObject()
+    	instantiateItem()实例化
+    	destroyItem()销毁
+    	PagerTabStrip 页标题
+      agerTitleStrip
+    
+    FragmentPagerAdapter 数据源 List<Fragment>
+    	
+    
+    FragmentStatePagerAdapter 数据源 List<Fragment>
+    
+    onpagerchangerlistener
+    
+    viewfilpper 界面的自动切换
+    
+    scrollview 滚动翻页
+    
+    Gallery 图片滚动
+    
+    seekBar 进度条
+    
+    
+   
+Android攻城狮的第二门课（第2季）
+
+	Debug调试
+	 LogCat 日志信息
+	 Log.v d i w e 五个级别
+	 toast 提示信息
+	 	toast.makeTexythis,"",时间).show() 
+	 	toast.setGravity(Gravity.CENTER,0,0)改变显示位置  (,偏移量,偏移量)
+	 	带图片的显示
+	 	layout = toast.getVieew();
+	 	iv new ImageView(this);
+	 	iv.setImageResource();
+	 	layout.addView(iv，0); 图片在文字上方
+	 	toast.show();
+	 	
+	 	
+dialog弹窗对话框
+	 	对话框是在当前界面弹出的一个小窗口，用于显示重要提示信息，
+	 	提示用户输入信息，确认信息，或者显示某种状态，如下载进度，退出提示等等。
+	 	一般情况下，影虎要与对话框进行交互，然后返回到被只改的界面以继续运行当前的应用程序。
+
+
+		要创建一个AlertDialog，就要用到AlertDialog.Builder的create()方法。
+		AlertDialog.Builder builder=new AlertDialog.Builder(this);
+		Dialog d=builder.create();
+		setTitle：为对话框设置标题
+		setIcon：为对话框设置图标
+		setMessage：为对话框设置内容
+		setView：给对话框设置自定义样式
+		setItems：设置对话框要显示的一个list，一般用于显示几个命令时
+		setMultiChoiceItems：用来设置对话框显示一系列的复选框
+		setSingleChoiceItems：设置单选按钮
+		setNeutralButton：普通按钮
+		setPositiveButton：给对话框添加“确认”按钮
+		setNegativeButton：给对话框添加“取消”按钮
+		
+		自定义布局
+// 这是显示自定义的dialog
+		private void showSelfDialog() {
+		LayoutInflater inflater = LayoutInflater.from(SecondActivity.this);
+		View view = inflater.inflate(R.layout.dialog_item, null);
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setView(view);
+		builder.setTitle("这是自定义的dialog");
+		AlertDialog dialog = builder.create();
+		dialog.show();
+		
+
+Notification		
+		如何实现通知栏:
+		1.获取NotificationManager
+		2.显示通知栏:notify(id,notification);
+		3.取消通知栏:cancle(id);
+		4.构造Notification并设置显示内容
+		5.通知栏通知可以设置声音提示,指示灯,以及震动效果
+    
+    
+    //发送notification通知
+		NotificationManager manager;
+		manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);// 取到通知控制类
+		Builder builder = new Notification.Builder(this);
+		builder.setSmallIcon(R.drawable.XXX);//设置图标
+		builder.setTicker("hello");//手机状态栏的提示
+		builder.setWhen(System.currentTimeMills());//设置时间
+		builder.setContentTitle("通知栏通知");//设置标题
+		builder.setContentText("我来自NotificationDemo");//设置通知内容
+		Intent intent = new Intent(this,MainActivity.class);
+		PendingIntent pintent = PendingIntent.getActivity(this,0,intent);
+		builder.setContentIntent(pintent);//点击后的意图
+		//builder.setDefaults(Notification.DEFAULT_SOUND);//设置提示声音
+		//builder.setDefaults(Notification.DEFAULT_LIGHTS);//设置指示灯
+		//builder.setDefaults(Notification.DEFAULT_VIBRATE);//设置震动
+		builder.setDefaults(Notification.DEFAULT_ALL);//三种效果都有
+		Notification not = builder.build();//4.1及以上
+		//builder.getNotification();//4.1以下
+		manager.notify(id, not);//显示通知栏,id自定义
+		*注：指示灯和震动需要设置android.permission.FLASHLIGHT和android.permission.VIBRATE权限
+    
+    
+    设置通知参数步骤：
+		第一步:创建Builder对象（是notification的builder）并new出Notification.Builder(this),
+		通过调用builder的方法来设置，setSmallIcon(R.drawable...)，setTicker...；
+		第二步(点击后的响应)：创建PendingIntent对象并赋值为PendingIntent.getActivity(context,requestCode,intent,flags):
+		context:this;
+		requestCode:请求码，0；
+		intent:创建Intent对象，在new中根据需求选择构造的类.class;
+		flags--0;
+		第三步：创建Notification对象，并将builder.build()赋值//4.1即以上，要用builder.build()方法，
+		以下要用builder.getNotification()方法；
+		第四步：创建NotificationManager对象，因为是系统的常用服务，赋值为getSystemService(Context.NOTIFICATION_SERVICE),
+		需强制转化；调用成员函数notify(id,notification)来加载Notification，id是一个int值，表示notification的id，
+		自行赋值即可；
+		
+		
+		选项菜单:
+		1.创建选项菜单:在Activity中重写onCreateOptionsMenu()的方法
+		设置菜单项可用代码动态设置menu.add();
+		还可以通过xml设置MenuInflaer.inflate();
+		2.设置菜单项点击事件:onOptionsItemSelected();
+		
+		动态创建菜单：
+		第一步：在Activity中重写onCreateOptionsMenu()来创建选项菜单，在中包含了getMenuInflater().inflate(R.menu.main,menu),R.menu.main是res的menu文件夹下的xml文件是放菜单的文件夹；设置菜单项可以通过两种方法： 一：代码动态设置menu.add(groupId,itemId,order,title),
+		groupId--1:分组的id;
+		itemId--100:菜单项的id;
+		order--1:菜单项排序用的;
+		title--"菜单1":菜单名称;
+		类似于ArrayList,可以调用add方法来加载如
+		menu.add(1,100,1,"菜单一");
+		menu.add(1,101,1,"菜单二");
+		menu.add(1,102,1,"菜单三");
+		add方法返回的是item，可以赋值给item，再调用item的setTitle与setIcon（在API>=11时，是不显示图标的）来设置item；
+		二：在R.menu.main的xml文件，添加item控件来添加设置菜单项;
+		第二步：重写onOptionsItemSelected(MenuItem item)方法设置菜单项的点击事件，再switch(item.getItemId())来设置各个case，方法1的id是add中itemId，方法二的id是xml文件中定义的id的点击事件；
+		第三步：创建Activity，关联xml文件，并在manifest中加上activity。在case中，新建intent，调用item的setIntent(intent)实现界面跳转；
+		新建activity时需要再mainfast中配置
+		
+		
+ContextMenu上下文菜单
+		ContextMenu与OptionMenu的区别
+		1.OptionMenu对应的是activity，一个activity只能拥有一个选项菜单
+		2.ContextMenu对应的是View，每个View都可以设置上下文菜单
+		3.一般情况ContextMenu常用于ListView或者GridView
+
+		使用上下文菜单步骤：
+		1.在需要上下文菜单的view控件中注册上下文菜单registerForContextMenu()
+		2.重写activity的onCreateContextMenu方法，创建自定义菜单（xml加载/代码动态添加）
+		3.重写activity的onContextItemSelected，根据上下文中各个子项的id来实现不同的菜单操作
+		
+		通过代码形式实现文件点击的上下文菜单(以listView为例):
+		1.为这个listView注册上下文菜单
+		this.registerForContextMenu(listView1);
+		2.在Activity中重写onCreateContextMenu方法,并在其中设置上下文菜单的一些属性
+		@Override
+		public void onCreateContextMenu(ContextMenu menu, View v,
+		ContextMenuInfo menuInfo) {
+		// TODO Auto-generated method stub
+		super.onCreateContextMenu(menu, v, menuInfo);
+		menu.setHeaderTitle("文件操作系统");
+		menu.setHeaderIcon(R.drawable.ic_launcher);
+		menu.add(1, 1, 1, "复制");
+		menu.add(1, 2, 1, "剪切");
+		menu.add(1, 3, 1, "粘贴");
+		menu.add(1, 4, 1, "重命名");
+		}
+		3.在当前的Activity中重写onContextItemSelected方法,实现对每个上下文菜单的点击事件的实现:
+		switch (item.getItemId()) {
+		case 1:
+		Toast.makeText(Five_Activity.this, "当前点击了" + item.getTitle(), 2000)
+		.show();
+		break;
+		case 2:
+		Toast.makeText(Five_Activity.this, "当前点击了" + item.getTitle(), 2000)
+		.show();
+		break;
+		
+		
+SubMenu子菜单:	如果我们点击了选项菜单中的某一个选项,那么此时会弹出一个新的菜单,那么这就是子菜单	
+		动态添加SubMenu子菜单
+		1.添加内容
+		onCreateOptionsMenu(Menu menu){
+		SubMenu file=menu.addSubMenu("文件"）;
+		SubMenu edit=menu.addSubMenu("编辑");
+		file.add();
+		file.setxxx（）
+		edit.add()'
+		}
+		2.监听子菜单点击事件
+		onOptionItemSelected(MenuItem item){
+		if(item.getGroupId()==1){
+		switch(item.getItemId){}
+		}else if(item.getGroupId()==1){}
+		}		
+		
+		通过xml布局文件添加子菜单
+		1.静态添加子菜单
+		<item
+		android:title="@string/action_settings"
+		app:showAsAction="never">
+		<menu>
+		<item/>
+		<item/>
+		</menu>
+		</item>
+		item里面嵌套子menu
+
+		2.引入xml文件
+		@Override
+		public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater inflater = getMenuInflater();
+		inflater.inflate(R.menu.main, menu);}
+
+		3.重写点击事件
+		onOptionItemSelected
+		
+	
+Android攻城狮的第二门课（第3季）	
+	四种存储方式：
+	1.SharedPreferences
+	1)一种轻型的数据存储方式
+	2）本质：基于XML文件存储key-value键值对数据
+	3）常用来存储一些简单的配置信息
+	2.SQLite
+	3.Content Provider
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	4.File
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

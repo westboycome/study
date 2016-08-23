@@ -1,0 +1,16 @@
+src 
+	--main
+		--java
+	--test
+		--java
+mvn -v 查看maven版本
+		compile 编译
+		test  测试
+		package 大包
+		
+		clean 删除target
+		install 安装jar包到本地仓库中
+		
+archetype 用于创建maven规定的目录
+	archetype :generate 
+	

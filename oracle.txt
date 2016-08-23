@@ -1,0 +1,39 @@
+system/12345
+sys/12345 @ 
+show user 查看用户
+desc daba_users 
+select username from dba_users;
+启用scott
+alter user scott account unlock;
+密码默认 tiger
+connect Scott/tiger
+永久表空间
+临时表空间
+undo表空间---对数据操作前进行保存
+查看表空间
+	dba_tablespaces user_tablespaces
+	desc dba_tablespaces
+	select tablespace_name from dba_tablespaces;
+	dba_users/user_users 数据字典
+	
+创建表空间
+	create tablespace test_tablespae
+	datafile 'testfile.dbf' size 10m;--永久表空间
+	create temporary tablespace temptest_tablespace
+	tempfile 'tempfile.dbf' size 10m;--临时表空间
+
+更改表空间状态
+	alter tablespace test_tablespace
+	offline/online
+	status
+	read only
+	read write
+	
+增加数据文件
+	alter tablspace test2_tablespace
+	add datdfile 'test2_file.dbf'	size 10m;
+	alter tablespace test2_tablespace
+	drop datafile 'test2_file.dbf'
+
+
+ 	

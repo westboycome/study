@@ -1,0 +1,570 @@
+Query中可以根据元素名查找元素，格式如下：
+$(“element”)
+其中element就是元素的名称，
+attr()方法的功能是设置或获取元素的某项属性值
+$("button").attr("disabled","true");
+设置多个样式： $("button").css({"width":"100px","height":"100px","background":"purple"})
+设置单个样式：$("button"）.css("width","100px");
+
+1.使用class选择器的方式先获得.red的属性
+2.将.green的样式设置为与.red相同的样式
+3.html() 方法是返回或设置被选元素的内容 (inner HTML)。
+			<script type="text/javascript">
+            var $redHTML = $(".red").html();
+            $(".green").html($redHTML);
+        </script>
+        
+1.先取得form标签
+2.获取form下的所有标签
+3.用attr()设置出form中的所有标签的属性值
+4.attr("属性名","属性值")，attr("disabled", "true")是指让某个节点禁用（包括事件等），
+HTML类似这样：<input type="text" class="className" disabled=true />        
+        
+ele1,sele2,seleN选择器
+的调用格式如下：
+$(“sele1,sele2,seleN”)
+其中参数sele1、sele2到seleN为有效选择器，每个选择器之间用“，”号隔开
+例：
+$(".red,.green").html("hi,我们的样子很美哦!");        
+        
+层次选择器： 根据上下文关系，获取元素并进行相应的操作
+获取div里面所有的label元素并设置背景色
+$("div label").css("background-color","blue");        
+        
+parent > child选择器
+调用格式如下：
+$(“parent > child”)
+child参数获取的元素都是parent选择器的子元素，它们之间通过“>”符号来表示一种层次关系。
+使用$("div>span")选择器代码，获取的是<div>“家庭中”全部“子辈”<span>元素，不包括“孙辈”<span>元素和“家庭外”的<span>元素
+
+通过prev + next选择器就可以查找与“prev”元素紧邻的下一个“next”元素，格式如下：
+$(“prev + next”)
+其中参数prev为任何有效的选择器，参数“next”为另外一个有效选择器，它们之间的“+”表示一种上下的层次关系，也就是说，“prev”元素最紧邻的下一个元素由“next”选择器返回的并且只返回唯的一个元素。
+$("p+label").css("background-color","red");
+
+$(“prev ~ siblings”)
+其中参数prev与siblings两者之间通过“~”符号形成一种层次相邻的关系，表明siblings选择器获取的元素都是prev元素之后的同辈元素。
+1. 获取div中全部元素 $("div *")
+2.家族所有 $("div span") 儿子辈，孙子辈 
+3.父亲和儿子 $("parent>child")
+4.紧挨着的第一个邻居 $("p+span") 
+5.挨着的所有邻居 $("p~span"),p下的所有span
+
+li:first过滤选择器可以很方便地获取ul列表中的第一个li元素.
+:first过滤选择器的功能是获取第一个元素，常常与其它选择器一起使用，获取指定的一组元素中的第一个元素。
+:last即获得一组元素中的最后一个元素
+
+:eq(index)
+其中参数index表示索引号（即：一个整数），它从0开始，如果index的值为3，表示选择的是第4个元素
+
+:contains(text)过滤选择器
+它的功能是选择包含指定字符串的全部元素，它通常与其他元素结合使用，获取包含“text”字符串内容的全部元素对象。其中参数text表示页面中的文字。
+
+:has(selector)过滤选择器的功能是获取选择器中包含指定元素名称的全部元素，其中selector参数就是包含的元素名称，是被包含元素。
+$("li:has('p')")获取了包含<p>元素的全部<li>元素
+
+:hidden过滤选择器的功能是获取全部不可见的元素，这些不可见的元素中包括type属性值为hidden的元素。
+var $strHTML = $("input:hidden").val();
+$("div").html($strHTML);
+
+:visible过滤选择器获取的是全部可见的元素，也就是说，只要不将元素的display属性值设置为“none”，那么，都可以通过该选择器获取。
+$("li:visible").css("background-color","blue");
+
+[attribute=value]属性选择器
+[attribute!=value]
+[attribute*=value]，它可以获取属性值中包含指定内容的全部元素
+[attribute=value]属性选择器的功能是获取与属性名和属性值完全相同的全部元素，其中[]是专用于属性选择器的括号符，参数attribute表示属性名称，value参数表示属性值。
+$("li[title='蔬菜']").css("background-color", "green");
+
+:first-child子元素过滤选择器则可以获取每个父元素中返回的首个子元素，它是一个集合，常用多个集合数据的选择处理。
+$("li:first-child").css("background-color", "green");
+$("li:last-child")相反
+
+$("#frmTest :input")
+:input表单选择器可以实现，它的功能是返回全部的表单元素，不仅包括所有<input>标记的表单元素，
+而且还包括<textarea>、<select> 和 <button>标记的表单元素，因此，它选择的表单元素是最广的。
+:text表单文本选择器可以获取表单中全部单行的文本输入框元素，单行的文本输入框就像一个不换行的字条工具，使用非常广泛。
+:password选择器，它的功能是获取表单中全部的密码输入文本框元素。
+:radio选择器可轻松获取表单中的全部单选按钮元素。
+:checkbox选择器可以快速定位并获取表单中的复选框元素。
+:submit选择器可获取表单中的这个提交按钮元素。$("#frmTest input:submit")
+:image选择器可以快速获取该类全部元素  $("#frmTest :image").addClass("bg_red");
+:button选择器能获取且只能获取“type”属性值为“button”的<input>和<button>这两类普通按钮元素。
+:checked可以获取处于选中状态的全部元素。
+:selected选择器只能获取<select>下拉列表框中全部处于选中状态的<option>选项元素。
+
+attr()方法的作用是设置或者返回元素的属性，
+其中attr(属性名)格式是获取元素属性名的值，
+attr(属性名，属性值)格式则是设置元素属性名的值。
+
+使用html(格式代码也被一起获取)和text(获取元素中的文本内容，并不包含HTML格式代码)方法操作元素的内容，当两个方法的参数为空时，表示获取该元素的内容，而如果方法中包含参数，
+则表示将参数值设置为元素内容
+
+addClass()和css()方法可以方便地操作元素中的样式，前者括号中的参数为增加元素的样式名称，后者直接将样式的属性内容写在括号中。
+ $("#content").css({"backgroundColor":"red","color":"white"});
+ 
+removeAttr(name)和removeClass(class)分别可以实现移除元素的属性和样式的功能，前者方法中参数表示移除属性名，后者方法中参数则表示移除的样式名
+append(content)方法的功能是向指定的元素中追加内容，被追加的content参数，可以是字符、HTML元素标记，还可以是一个返回字符串内容的函数。
+appendTo()方法也可以向指定的元素内插入内容，它的使用格式是：
+
+$(content).appendTo(selector)
+参数content表示需要插入的内容，参数selector表示被选的元素，即把content内容插入selector元素内，默认是在尾部。
+
+使用before()和after()方法可以在元素的前后插入内容，它们分别表示在整个元素的前面和后面插入指定的元素或内容，调用格式分别为：
+$(selector).before(content)和$(selector).after(content)
+其中参数content表示插入的内容，该内容可以是元素或HTML字符串。
+
+调用clone()方法可以生成一个被选元素的副本，即复制了一个被选元素，包含它的节点、文本和属性，它的调用格式为：
+$(selector).clone()
+
+replaceWith()和replaceAll()方法都可以用于替换元素或元素中的内容，但它们调用时，内容和被替换元素所在的位置不同，分别为如下所示：
+$(selector).replaceWith(content)和$(content).replaceAll(selector)
+
+wrap()和wrapInner()方法都可以进行元素的包裹，但前者用于包裹元素本身，后者则用于包裹元素中的内容，它们的调用格式分别为：
+$(selector).wrap(wrapper)和$(selector).wrapInner(wrapper)
+参数selector为被包裹的元素，wrapper参数为包裹元素的格式
+<i></i>斜体字
+
+使用each()方法可以遍历指定的元素集合，在遍历时，通过回调函数返回遍历元素的序列号，它的调用格式为：
+$(selector).each(function(index))
+参数function为遍历时的回调函数，index为遍历元素的序列号，它从0开始
+
+remove()方法删除所选元素本身和子元素，该方法可以通过添加过滤参数指定需要删除的某些元素，
+而empty()方法则只删除所选元素的子元素。
+
+6
+ready()事件类似于onLoad()事件，但前者只要页面的DOM结构加载后便触发，而后者必须在页面全部元素加载成功才触发，ready()可以写多个，按顺序执行。此外，下列写法是相等的：
+$(document).ready(function(){})等价于$(function(){});
+
+bind()方法绑定元素的事件非常方便，绑定前，需要知道被绑定的元素名，绑定的事件名称，事件中执行的函数内容就可以，它的绑定格式如下：
+$(selector).bind(event,[data] function)
+参数event为事件名称，多个事件名称用空格隔开，function为事件执行的函数
+
+hover()方法的功能是当鼠标移到所选元素上时，执行方法中的第一个函数，鼠标移出时，执行方法中的第二个函数，实现事件的切实效果，调用格式如下：
+$(selector).hover(over，out);
+over参数为移到所选元素上触发的函数，out参数为移出元素时触发的函数。
+
+unbind()方法可以移除元素已绑定的事件，它的调用格式如下：
+
+$(selector).unbind(event,fun)
+其中参数event表示需要移除的事件名称，多个事件名用空格隔开，fun参数为事件执行时调用的函数名称
+
+one()方法可以绑定元素任何有效的事件，但这种方法绑定的事件只会触发一次，它的调用格式如下：
+$(selector).one(event,[data],fun)
+参数event为事件名称，data为触发事件时携带的数据，fun为触发该事件时执行的函数
+
+trigger()方法可以直接手动触发元素指定的事件，这些事件可以是元素自带事件，也可以是自定义的事件，总之，该事件必须能执行，它的调用格式为：
+$(selector).trigger(event)
+其中event参数为需要手动触发的事件名称。
+
+focus事件在元素获取焦点时触发，如点击文本框时，触发该事件；而blur事件则在元素丢失焦点时触发，
+如点击除文本框的任何元素，都会触发该事件。
+
+当一个元素的值发生变化时，将会触发change事件，例如在选择下拉列表框中的选项时，就会触change事件。
+
+与bind()方法相同，live()方法与可以绑定元素的可执行事件，除此相同功能之外，live()方法还可以绑定动态元素，即使用代码添加的元素事件，格式如下：
+$(selector).live(event,[data],fun)
+参数event为事件名称，data为触发事件时携带的数据，fun为触发该事件时执行的函数
+
+show()和hide()方法用于显示或隐藏页面中的元素，它的调用格式分别为：
+$(selector).hide(speed,[callback])和$(selector).show(speed,[callback])
+参数speed设置隐藏或显示时的速度值，可为“slow”、“fast”或毫秒数值，可选项参数callback为隐藏或显示动作执行完成后调用的函数名。
+第一节我们学过实现元素的显示与隐藏需要使用hide()与show()，那么有没有更简便的方法来实现同样的动画效果呢？
+调用toggle()方法就可以很容易做到，即如果元素处于显示状态，调用该方法则隐藏该元素，反之，则显示该元素，它的调用格式是：
+$(selector).toggle(speed,[callback])
+其中speed参数为动画效果时的速度值，可以为数字，单位为毫秒，也可是“fast”、“slow”字符，可选项参数callback为方法执行成功后回调的函数名称。
+
+使用slideToggle()方法可以切换slideUp()和slideDown()，即调用该方法时，如果元素已向上滑动，则元素自动向下滑动，反之，则元素自动向上滑动，格式为：
+$(selector).slideToggle(speed,[callback])
+其中speed参数为动画效果时的速度值，可以为数字，单位为毫秒，也可是“fast”、“slow”字符，可选项参数callback为方法执行成功后回调的函数名称。
+
+fadeIn()和fadeOut()方法可以实现元素的淡入淡出效果，前者淡入隐藏的元素，后者可以淡出可见的元素，它们的调用格式分别为：
+$(selector).fadeIn(speed,[callback])和$(selector).fadeOut(speed,[callback])
+其中参数speed为淡入淡出的速度，callback参数为完成后执行的回调函数名。
+
+调用fadeTo()方法，可以将所选择元素的不透明度以淡入淡出的效果调整为指定的值，该方法的调用格式为：
+$(selector).fadeTo(speed,opacity,[callback])
+其中speed参数为效果的速度，opacity参数为指定的不透明值，它的取值范围是0.0~1.0，可选项参数callback为效果完成后，回调的函数名
+
+调用animate()方法可以创建自定义动画效果，它的调用格式为：
+$(selector).animate({params},speed,[callback])
+其中，params参数为制作动画效果的CSS属性名与值，speed参数为动画的效果的速度，单位为毫秒，可选项callback参数为动画完成时执行的回调函数名。
+
+stop()方法的功能是在动画完成之前，停止当前正在执行的动画效果，这些效果包括滑动、淡入淡出和自定义的动画，它的调用格式为：
+$(selector).stop([clearQueue],[goToEnd])
+其中，两个可选项参数clearQueue和goToEnd都是布尔类型值，前者表示是否停止正在执行的动画，后者表示是否完成正在执行的动画，默认为false。
+
+delay()方法的功能是设置一个延时值来推迟动画效果的执行，它的调用格式为：
+$(selector).delay(duration)
+其中参数duration为延时值，它的单位是毫秒，当超过延时值时，动画继续执行。
+
+使用load()方法通过Ajax请求加载服务器中的数据，并把返回的数据放置到指定的元素中，它的调用格式为：
+load(url,[data],[callback])
+参数url为加载服务器地址，可选项data参数为请求时发送的数据，callback参数为数据请求成功后，执行的回调函数。
+
+使用getJSON()方法可以通过Ajax异步请求的方式，获取服务器中的数组，并对获取的数据进行解析，显示在页面中，它的调用格式为：
+jQuery.getJSON(url,[data],[callback])或$.getJSON(url,[data],[callback])
+
+使用getJSON()方法可以通过Ajax异步请求的方式，获取服务器中的数组，并对获取的数据进行解析，显示在页面中，它的调用格式为：
+jQuery.getJSON(url,[data],[callback])或$.getJSON(url,[data],[callback])
+
+使用get()方法时，采用GET方式向服务器请求数据，并通过方法中回调函数的参数返回请求的数据，它的调用格式如下：
+$.get(url,[callback])
+
+使用serialize()方法可以将表单中有name属性的元素值进行序列化，生成标准URL编码文本字符串，直接可用于ajax请求，它的调用格式如下：
+$(selector).serialize()
+其中selector参数是一个或多个表单中的元素或表单元素本身。
+
+使用ajaxSetup()方法可以设置Ajax请求的一些全局性选项值，设置完成后，后面的Ajax请求将不需要再添加这些选项值，它的调用格式为：
+jQuery.ajaxSetup([options])或$.ajaxSetup([options])
+
+ajaxStart()和ajaxStop()方法是绑定Ajax事件。ajaxStart()方法用于在Ajax请求发出前触发函数，ajaxStop()方法用于在Ajax请求完成后触发函数。它们的调用格式为：
+$(selector).ajaxStart(function())和$(selector).ajaxStop(function())
+
+
+
+
+以下代码可以实现文字以斜体样式在浏览器中显示：
+p a{font-style:italic;}斜体
+p a{text-decoration:underline;}下划线样式
+ .oldPrice{text-decoration:line-through;}原价上的删除线
+p{text-indent:2em;}段前习惯空两个文字的空白
+p{line-height:1.5em;}段落行间距为1.5倍。
+h1{letter-spacing:50px;}字母与字母间隔
+h1{ word-spacing:50px;}
+
+常用的块状元素有：
+<div>、<p>、<h1>...<h6>、<ol>、<ul>、<dl>、<table>、<address>、<blockquote> 、<form>
+
+常用的内联元素有：
+<a>、<span>、<br>、<i>、<em>、<strong>、<label>、<q>、<var>、<cite>、<code>
+
+常用的内联块状元素有：
+<img>、<input>
+
+ display:inline-block;内联块状元素
+ display:inline;块级元素
+a{display:block;}内联元素
+
+dashed（虚线）| dotted（点线）| solid（实线） 
+border-top:1px solid red;
+border-right:1px solid red; 
+border-left:1px solid red;
+div{border-bottom:1px solid red;}下
+
+从里到外
+div{
+    width:200px;
+    padding:20px;
+    border:1px solid red;
+    margin:10px;    
+}
+总结一下：padding和margin的区别，padding在边框里，margin在边框外。
+在网页中，元素有三种布局模型：
+1、流动模型（Flow）
+2、浮动模型 (Float)
+3、层模型（Layer）
+
+层模型有三种形式：
+1、绝对定位(position: absolute)
+2、相对定位(position: relative)
+3、固定定位(position: fixed)
+
+字体缩写
+body{
+    font-style:italic;
+    font-variant:small-caps; 
+    font-weight:bold; 
+    font-size:12px; 
+    line-height:1.5em; 
+    font-family:"宋体",sans-serif;
+}
+这么多行的代码其实可以缩写为一句：
+body{
+    font:italic  small-caps  bold  12px/1.5em  "宋体",sans-serif;
+}
+
+2、em
+就是本元素给定字体的 font-size 值，如果元素的 font-size 为 14px ，
+那么 1em = 14px；如果 font-size 为 18px，那么 1em = 18px。如下代码：
+p{font-size:12px;text-indent:2em;}
+上面代码就是可以实现段落首行缩进 24px（也就是两个字体大小的距离）。
+
+满足定宽和块状两个条件的元素是可以通过设置“左右margin”值为“auto”来实现居中的。我们来看个例子就是设置 div 这个块状元素水平居中：
+不定宽度的块状元素有三种方法居中（这三种方法目前使用的都比多）：
+加入 table 标签
+设置 display;inline 方法
+设置 position:relative 和 left:50%;
+
+父元素高度确定的单行文本的竖直居中的方法是通过设置父元素的
+ height 和 line-height 高度一致来实现的。如下代码：
+<div class="container">
+    hi,imooc!
+</div>
+css代码：
+<style>
+.container{
+    height:100px;
+    line-height:100px;
+    background:#999;
+}
+</style>
+
+方法一：使用插入 table (包括tbody、tr、td)标签，同时设置 vertical-align：middle。
+说到竖直居中，css 中有一个用于竖直居中的属性 vertical-align，但这个样式只有在
+父元素为 td 或 th 时，才会生效。所以又要插入 table 标签了。
+
+<style>
+.container{
+    height:300px;
+    background:#ccc;
+    display:table-cell;/*IE8以上及Chrome、Firefox*/
+    vertical-align:middle;/*IE8以上及Chrome、Firefox*/
+}
+</style>
+
+position : absolute
+float : left 或 float:right
+元素会自动变为以 display:inline-block 的方式显示，当然就可以设置元素的
+ width 和 height 了且默认宽度不占满父元素。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+02903103298   778521
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

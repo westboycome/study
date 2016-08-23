@@ -1,0 +1,41 @@
+select...from...where...group by...having...order by...
+hql 是面向对象的查询语句 ，对属性大小写敏感
+from 查询持久化类及属性
+distinct 去除查询结果中的重复元素
+<> 不等
+like %、_ 模糊匹配
+empty 空
+member of 属于元素集合
+
+inner join 
+left join
+right join
+with
+fetch
+implicit  隐式
+explicit  显式
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

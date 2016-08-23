@@ -1,0 +1,81 @@
+1、hibernate注解简介	
+2、JPA与hibernate的关系
+		JPA标准接口
+		annotation、entitymanager、core
+		
+3、hibernate注解分类
+		类级别
+			@Entiy  映射实体类
+			@Table
+			@Embeddable 
+4、@Entity
+	//创建hibernate配置对象
+	 Configuration config = new Configuration().configure();
+	 //创建服务注册对象
+	  ServiceRegistry serviceRegistry = neww ServiceRegistryBuilder().applySetings(config.getProperties()).builderService()
+	 //创建会话工厂
+	 sessionfactory 
+5、@Table
+	（name="",catalog="目录",schema="模式--数据库名"）
+6、@Embeddable
+		一个嵌入类，在另一个实体中充当一个属性
+		嵌入到实体类中
+7、schema与catalog
+
+属性级别注解
+	1、@Id
+		若有多个主键必须实现serializeable接口
+	2、@SequenceGenerator
+			制定空间大小
+	3、@GeneratedValue
+		strategy主键生成策略
+		AUTO 自动选择
+		INDENTITY 根据数据库字段生成
+		SEQUENCE  使用sequence来决定主键的值
+		TABLE 表来决定主键的值 要结合@SequenceGenerator来使用
+		length 指定属性的大小
+		属性为String类型，但要做主键时，
+		@GeneratedValue（generator="sid"）
+		@genericgenerator（name="sid",stratey="assigned"）
+	4、@Column
+		name nullable unipue(是否是唯一的标识) length insertable updateable 
+	5、@Embedded
+		类是嵌入类----类和属性都要进行注解
+	6、@EmbeddedId
+	类和属性都加@EmbeddedId注解
+		嵌入类的主键实现复合主键，实现serializable接口  重写hashcode、equals
+	7、@Lob
+	8、@Version
+	9、@Basic
+	10、@Transient
+		不会被ORM映射到数据库中，比如个人隐私的属性
+		
+关系映射级别
+	1、一对一单项外键
+		@oneToOne(cascode=CascodeType.ALL) 级联关系
+		@JoinColumn(name="pid",unique=true) 唯一外键
+	2、一对一双项外键关联
+		@OneToOne(mappedBy="") 被控方
+	3、一对一双项外键联合主键
+		主键类 @Embeddable 
+		实体类 @EmbeddId
+		实现serialzable  接口，重写hashcode（）和equals（）
+	4、一对多单项外键关键
+		@OneToManycascade=("cascadeType.ALL",feth=FetchType.LAZY)
+		@JoinColumn(name="")
+	5、多对一单项外键关联
+		@ManyToOne (cascade="cascadeType.ALL",feth=FetchType.EAGER--抓取策略)
+		JoinColumn（name=""）
+		
+	6、一对多双项外键关联
+		多方：持有一方的引用
+		一方：持有多方的集合
+	7、多对多单项外键关联
+		一个多方持有另一个多方的集合
+		@ManyToMany
+		@JoinTable(
+		name = "teacher_studentd",//中间表 关联两个实体类
+		joinColumns = {"@JoinColumn(name="sid")},
+		inverseJoinColumns = {@JoinColumn(name="tid")}
+		)
+	8、多对多双项外键关联
