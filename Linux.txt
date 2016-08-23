@@ -1,0 +1,644 @@
+
+一、命令基本格式：
+     ls -1 详细列表  (ll)
+        -h 人性化显示文件大小
+        -a 显示所有文件，包括隐藏文件
+        -d 查看目录属性
+        -i 显示iNode
+二、文件处理命令
+	mkdir -p [目录名] （递归）
+	cd、pwd
+	touch建立空文件
+	rmdir 删除空目录
+	rm -rf 递归删除
+	cp -r 复制文件 
+	cp -a 复制所有属性
+	mv    剪切/改名
+	
+	硬连接：拥有相同的i节点和存储block块，可以看做是同一个文件
+					可通过i节点识别
+					不能跨分区
+					不能针对目录使用
+			ln 、、/ 、、		
+	ln -s创建软连接  
+		软链接应该叫作符号链接，就是Windows中的快捷方式，很方便的功能啊。
+		硬链接是直接复制了源文件的inode，一般不会再占用磁盘block，虽有区别，
+		不过你也可以当作快捷方式来用。 限制是硬链接不能链接到目录，且只能链接本文件系统中的文件
+
+三、文件搜索命令
+		文件搜索命令-locate + 文件名 /var/lib/mlocate
+				updatedb 更新数据库
+		命令搜索命令 whereis+ 命令    
+									-b 只查找可执行文件
+									-m  只查找班助文件
+									whoami
+									which + 命令
+		文件搜索 find +搜索范围+条件
+						find / -name or -user or -nouser install.log
+						-mtime +10 修改文件
+						-atime  访问时间
+						-ctime   文件属性
+						-size 25k
+						-inum 262522   按节点
+						-a and
+						-o or
+						-exec ls -lh {} \ 处理搜索结果
+						*任意内容 ？任意一个字符 [] 任意括号内的字符				
+		字符串搜索命令grep
+				-v  取反
+				
+四、帮助命令man
+		man man
+		man ls
+		man -f ls
+		help shell  获取shell内部命令
+		whereis cd 确定是否是shell内部命令 
+		help cd 获取内部命令帮助
+		info 
+五、压缩与解压命令
+		zip 压缩文件.zip  文件
+		zip -r  压缩文件 
+		unzip 解压文件
+		gzip 源文件    压缩为.gz格式的压缩文件，源文件会消失
+		gzip -c 源文件 > 压缩文件    原文件保留
+		gzip -r 目录  压缩所有子文件
+		gzip -d 压缩文件
+		gunzip 压缩文件
+		bzip2 源文件 不保留源文件
+		bzip2 -k  保留源文件
+		
+		tar -cvf 打包文件名  源文件 
+		tar -xcf 解压缩.tar文件
+		tar -zcvf
+		tar -zxvf   -c 位置
+		tar -jcvf   
+		tar -jxvf   .bz2
+		
+六 关机与重启命令
+		startx 进入图形界面 init 5
+		shutdown -h now 关机  init 0
+		shutdown -r now /reboot  重启
+		reboot 、init 6 重启
+		runlevel  系统级别
+
+七、其他命令
+		mount 查询已挂载的
+		chmod 755 hello.sh  执行脚本文件
+		挂载光盘
+			mkdir /mnt/cdrom
+			mount -t iso9660 /dev/sr0  /mnt/cdrom
+		  fdisk -l
+		  w
+		  who
+		  last
+		  lastlog
+		  echo $SHELL 查询当前的shell
+		  
+		
+wq 		保存并退出
+q! 		退出不保存
+ls 		列出所有文件 dir
+ls -1 详细列表
+   -h 人性化显示文件大小
+   -a 显示所有文件，包括隐藏文件
+   -d 查看目录属性
+   -i 显示iNode
+pwd 	显示当前在哪个目录下
+mkdir  建立目录
+rmdir  删除空目录
+cp  	 复制
+touch  建立空文件
+mv  	 移动文件和该文件名
+rm     删除文件和目录
+rm -rf *    删除所有内容（包括目录和文件）r递归 f强制
+in     建立符号连接
+in -s  源目录
+ | 就是管道命令  把上一个命令的结果交给 | 的后面的命令处理
+ grep -n “”  文件  查找关键字 有行数
+find / -name aa
+ls -l> a.text 列表内容写入a.text文件中(覆盖)
+ls -al >> aa.text 列表内容追加到aa.text 的末尾
+ls -ahl 查看文件的所有组
+
+  
+
+
+javac **.java编译
+java ** 运行
+ 
+gcc **.cpp 编译 gcc -o my1 **.cpp
+ ./a.out  运行 ./my1
+目录结构：
+root 存放root用户的相关文件
+home 存放普通用户的相关文件
+bin  存放常用命令的目录
+sbin 要具有一定权限才可以使用的命令 
+mnt  默认挂载光驱和软驱的目录
+etc  存放配置相关文件
+var  存放经常变化的文件
+boot 存放引导相关的文件
+usr  默认安装文件 
+
+ 添加用户
+ useradd xiaoming
+ passwd xiaoming  设置、修改密码
+ userdel 用户名  删除用户
+ userdel -r 用户名  删除用户及目录
+ 
+ 解决修改错误配置的方法
+ 在进入grub引导界面时  请输入 e
+ 在选中第二行  输入e
+ 在最后输入1 【但用户级别】
+ 请按b 
+ 
+ 
+如何添加组
+groupadd policeman
+vi /etc/group  可以更改
+ cat /etc/group--不能更改		--查看Linux中所有组
+useradd -g 组名 用户名   ----创建用户 并指定分配到哪个组
+vi/cat /etc/passwd   --查看所有用户信息
+-rw-r--r--   操作权限 含义：
+			-文件 d目录  l软链接文件  
+			rw-文件所有者对该文件的权限 r 可读 用4表示；w可写 用2表示； x可执行用1表示
+			r--文件所在组对该文件的权限
+			r--其他组的用户对该文件的权限
+
+如何修改文件访问权限
+chmod 
+usemod -g 组名 用户名 
+chown  用户名 文件名   --修改该文件的所有者
+chgrp  --更改组
+
+mount /mnt/cdrom/  挂载驱动
+umount /mnt/cdrom / 卸载驱动
+
+安装jdk
+	1把iso挂载
+	2把安装文件拷贝到 /home 下 cp 文件 /home 
+	3cd /home  切换到home
+	4安装 ./？？？？？.bin  回车
+	5vi /etc/profile  环境配置文件 jdk1.5.0_06
+	6 配置 export JAVA_HOME PATH CLASSPATH
+
+eclipse安装
+	1把iso挂载
+	2cp 文件  /home
+	3tar -zxvf ????.tar.gz   安装
+	4 ./eclipse	启动eclipse 【进入图形界面】startx  在终端启动eclipse
+
+myeclipse安装
+	1cp 文件  /home
+	2tar -zxvf ????.tar.gz   安装	
+	3在home下  ./????.bin
+	
+tomcat安装
+	1cp 文件 /home
+	2tar -zxvf ????.tar.gz   安装	
+
+realplay安装
+	1 cp 文件 /home
+	2 cd /home
+	3./????.bin
+	4cd realplay
+	5 ./realplay
+	测试
+	
+
+
+linux 安装分区
+	/boot 分区 100M ext3
+	swap交换分区	物理内存的2倍 但不要大于256M
+	/   根分区 尽可能大
+
+
+LANG=GB2312	
+
+镜像文件
+EnterpriseWorkbenchInstaller_4.0.3GA-E3.1.bin
+RealPlayer10GOID.bin
+apache-1.3.28.tar.gz
+eclipse_SDK-3.1.1-linux-i586.bin
+fcitx-3.1.1.tar.gz
+jakarta-tomcat-5.5.9.tar.gz
+jakarta-tomcat-5.0.30.tar.gz
+jdk-1_5_0_04-linux-i586-rpm.bin
+mysql-connector-java-3.1.10-bin.jar
+mysql-standard-4.0.26-pc-linux-gnu-i686.tar.gz
+samba-2.2.7a-7.9.0.i386.rpm
+samba-client-2.2.7a-7.9.0.i386.rpm
+samba-commom-2.2.7a-7.9.0.i386.rpm
+telnet-0.17-25.i386.rpm
+vsftpd-1.1.3-8.i386.rpm
+
+
+& 地址符 后台方式控制
+
+安装 rpm -ivh httpd-.......
+编译 反编译
+www.rpmfind.net
+rpm -ivh 包名  安装
+rpm包升级 rpm -Uvh 包全名
+卸载  rpm -e 包名
+查询是否安装 rpm -q 包名
+查询所有  rpm -qa | grep 包名 ---相关包
+查询详细信息  rpm -qi 包名
+查询安装位置  rpm -ql 包名
+查询文件属于哪个包  rpm -qf 系统文件名
+依赖信息  rpm -qr 包名
+校验  rpm -V 包名 
+SM5DLUGT
+
+RPM命令管理：RPM包中文件提取
+rpm2cpio 包全名 | cpio -idv .文件绝对路径 --> 前面的【.】代表当前路径，不能省略。【文件绝对路径】和包里文件的绝对路径对应，也就是告诉了cpio要去包里提取哪个文件。
+注：cpio只知道提取文件，并不知道要从什么地方提取文件，因此我们通常要使用【|】管道符或【<】输入重定向告诉cpio我们应该从什么设备去取出文件。
+使用输入重定向的cpio命令格式：
+cpio 选项 < [文件|设备]
+选项：
+-i：copy-in模式，还原
+-d：还原时自动新建目录
+-v：显示还原过程
+
+
+Yum在线安装：yum源文件
+1、yum的优点：将所有软件包放到官方服务器上，当进行yum在线安装时，可以自动解决依赖性问题。（rpm缺点：安装过程中，rpm包依赖性太强）
+2、redhat的yum在线安装需要付费，centOS不需要。
+3、在【/etc/yum.repos.d/】目录中，默认有4个yum源文件，其中【CentOS-Base.repo】是基本yum源文件，如果我们能上网，那它是默认生效的，而其他的都是默认不生效的。
+4、[base]：名字可以随便起。
+5、name：名字也是随便起。
+6、mirrorlist和baseurl一个是主站点，一个是辅助站点，这两个有一个就行。可以找一个163或清华大学的yum源更换。
+7、enabled：默认最后一个容器不生效，其他容器都生效。
+8、gpgcheck：一般都要开启，开启后安装时会验证rpm包是否是官方的，以保证系统安全。
+9、gpgkey：默认系统安装后，在目录【/etc/pki/rpm-gpg】下都会存在数字证书。注：前面的【file://】表示文件协议，后面的【/etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6】是数字证书的位置。
+[root@CentOS6 ~]# cd /etc/pki/rpm-gpg
+[root@CentOS6 rpm-gpg]# ll
+
+
+Yum在线安装：光盘搭建yum源
+有三个步骤：
+1、挂载光盘；
+2、使网络yum源【CentOS-Base.repo】失效，
+3、使光盘yum源【CentOS-Media.repo】生效，需要编辑【CentOS-Media.repo】文件，修改【baseurl】和【enabled】两项内容，
+[root@CentOS6 yum.repos.d]# vi CentOS-Media.repo
+		[c6-media]
+		name=CentOS-$releasever - Media
+		baseurl=file:///mnt/cdrom/　　　-->将baseurl设置为实际光盘挂载地址（另外两个要注释掉，否则会因为找不到光盘而报错。【#】注释时，必须写在行开头）
+		# file:///media/cdrom/
+		# file:///media/cdrecorder/
+		gpgcheck=1
+		enabled=1　　-->将enabled设置为1，使这个yum源配置文件生效
+		gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+编辑后保存退出即可。
+注：可以使用【 yum list】命令列出当前yum源中的所有rpm包：
+[root@CentOS6 yum.repos.d]# yum list
+......省略部分内容......
+
+
+
+常用yum命令：
+1.查询
+>yun list --查询所有可用软件包列表
+>yum search 关键字 --搜索服务器上所有和关键字相关的包
+2.安装
+>yum -y install 包名 (-y 自动回答yes)
+yum安装只写包名即可！ eg:yum -y install gcc --c语言编译器
+
+Yum在线安装：
+2、yum软件组管理命令
+		【yum grouplist】列出当前已安装的和可安装的所有组，例如：
+		[root@CentOS6 sysconfig]# yum grouplist
+		...省略部分内容...
+		Available Groups:
+		...省略部分内容...
+
+升级  yum -y update 包名
+卸载  yum -y remove 包名
+
+Java 平台
+	【yum groupinstall 软件组名】用于安装指定的软件组（注意：【软件组名】最好用双引号括起来，不能是中文。PS：经在CentOS6.5上测试，中文也可以正常安装）。
+	例如，我们想安装【Java 平台】组，由于组名不能是中文，所以我们需要知道该组名对应的英文组名才能安装。有两种方式可以获得英文组名：
+	a、因为本机是英文语系，所以可直接在本机通过【yum grouplist】命令查看组名；
+	b、若是远程连接的话，通常都是中文语系，需要使用【LANG=en_US】命令临时将当前系统下的语系修改为英文，然后通过【yum grouplist】命令查看组名。例如：
+	[root@CentOS6 sysconfig]# LANG=en_US
+	LANG=zh_CN.utf8
+	[root@CentOS6 sysconfig]# yum grouplist
+	Installed Groups:
+	...省略部分内容...
+	Available Groups:
+	...省略部分内容...
+
+Java Platform 
+	通过上面查询，可以知道【Java 平台】对应的英文名是【Java Platform】，下面是执行安装操作的命令：
+	[root@CentOS6 sysconfig]# yum groupinstall "Java Platform"
+	...省略部分内容...
+	Installed:
+	java-1.6.0-openjdk.i686 1:1.6.0.0-1.66.1.13.0.el6 java-1.7.0-openjdk.i686 1:1.7.0.45-2.4.3.3.el6 
+	...省略部分内容...
+	Complete!
+	注：【LANG=zh_CN.utf8】是临时将当前系统下运行的语系改为中文的命令（若需要永久修改，则在【/etc/sysconfig/i18n】文件中修改。
+
+
+源码包和RPM包的区别：
+		1、源码包是不能使用【service】命令来启动服务，因为源码包的安装位置由用户指定，放在哪并不统一。
+		而rpm包安装后，通常都是放在【/etc/rc.d/init.d】目录中的，而【service】命令执行时，会自动搜索该目录，
+		所以rpm包安装的服务可以使用【service】命令。
+		2、
+		1).rpm包安装位置不用指定，源码包安装位置必须指定。源码包没有卸载命令。卸载时直接删除文件夹即可。
+		源码包默认启动方法/usr/local/apache2/bin/apachetl start
+		2).rpm包启动方式两种 service XXXX start（red hat 系列专属） 或 /etc/rc.d/init.d/xxx start
+		源码包不能用第一种。
+		综上所述，安装位置不同，启动方法是有区别的。
+		3、使用绝对路径启动程序的方法是通用的，通常软件包中会写上启动程序的方法的。
+		4、如果将源码包安装后的启动程序复制到【/etc/rc.d/init.d】目录中，则也是可以使用【service】命令执行的。
+
+源码包安装
+		1、由于源码都是c语言写的，所以要先安装c语言编译器：gcc
+		2、从官方网站下载源码包，若是下载到了windows上面，可以使用winSCP传到linux上。
+		注：若已安装了二进制包，则源码包也是可以继续安装的，因为两者安装目录不一样。但是，并不建议这样做，因为端口会冲突。
+		***netstat -tlun
+		***查找网络连接信息和系统开启的端口号
+		使用 -t 选项列出 TCP 协议的连接
+		使用 -l 选项列出正在监听的套接字
+		使用 -u 选项列出 UDP 协议的连接
+		使用 -n 选项禁用域名解析功能
+
+源码包安装：3、源码包安装过程（源码包的安装过程和安装顺序是固定的）
+		下面以安装apache2为例，解压缩后的目录为【httpd-2.2.31】：
+		1、安装时必须进入到解压缩后的目录【httpd-2.2.31】中；
+		2、执行【./configure】命令，该命令用于软件配置与检查（基本上每个源码包都会有该命令，即使个别的没有该命令，也会提供相关替代命令），它有以下几点功能：
+		a、定义需要的功能选项；
+		b、检测系统环境是否符合安装要求；
+		c、把a中定义好的功能选项和b中检测系统环境的信息都写入Makefile文件，用于后续的编辑。（后续的【make】和【make install】命令都会依赖该文件）
+		执行命令【./configure --prefix=/usr/local/apache2】，该命令用于指定安装位置为：【/usr/local/apache2】（其中的【apache2】目录不需要提前创建，【make install】命令执行时会自动创建）。
+		命令执行后，会在当前目录生成Makefile文件。
+		3、执行【make】命令，编译源码（这一步通常比较耗时）；
+		4、执行【make install】命令，安装程序，此时会创建【/usr/local/apache2】目录。
+		注：
+		如果命令执行过程中发生终止，并且出现error、warn或no提示，则表明出错，否则，一切正常。
+		若执行【./configure】或【make】命令时出现错误，是不需要删除【/usr/local/apache2】目录的，
+		因为程序还没有真正安装。只需要执行【make clean】命令即可，该命令用于清除缓存、临时文件等，
+		使安装环境恢复到未安装状态。
+		若执行【make install】命令时报错，则需要删除【/usr/local/apache2】目录，并且执行【make clean】命令才行。
+		5、启动程序：通常程序的安装包中的INSTALL文件(在解压目录httpd-2.2.31/INSTALL)会有程序的安装与启动的说明，
+		apache2压缩包中的INSTALL文件中就有如下内容：
+　　$ ./configure --prefix=PREFIX　　　　-->配置（其中的PREFIX表示安装目录）
+　　$ make　　　　　　　　　　　　　　　　-->编译
+　　$ make install　　　　　　　　　　　　-->安装
+　　$ PREFIX/bin/apachectl start　　　　-->启动
+		因此，启动apache2的方法为：（若之前rpm安装的apache2已启动的话，需要先关闭，否则端口80会冲突的）
+		[root@CentOS6 httpd-2.2.31]# /usr/local/apache2/bin/apachectl start
+		httpd: Could not reliably determine the server's fully qualified domain name, using CentOS6.5min for ServerName
+		启动成功后，在浏览其中输入虚拟机对应的IP地址，会显示：It works！，表示安装成功。
+		若未出现，则可能是防火墙未关，用setup命令进入第一个选项关闭防火墙。刷新网页即可
+
+脚本安装包：准备工作
+		1、本节以安装LNMP1.0（http://lnmp.org/download.html）为例，所以需要先停止之前安装的apache和mysql服务
+		（最好也将源码包安装的apache【/usr/local/apache2】删除）
+		2、保证yum源正常：可以使用【yum list】命令测试。（若是光盘yum源，记得挂载光盘）
+		3、关闭SELinux和防火墙：
+		a、永久关闭SELinux的方法：编辑文件【/etc/selinux/config】，将【SELINUX=enforcing】改为【SELINUX=disabled】，
+		然后重启系统即可。
+		b、永久关闭防火墙的方法：【chkconfig iptables off】，开启为：【chkconfig iptables on】；
+		临时关闭防火墙的方法：【service iptables stop】，开启为：【service iptables start】。
+		4、脚本安装过程中（以&&分割的每条命令按顺序执行（如果以下载好安装包，第一步可以省略）），
+		会将系统中已有的apache、mysql、php等卸载掉。
+
+		进入安装目录-->./install.sh lnmp -->
+		
+		注：安装后，如果安装卡在了【php-fpm】那里，通常表示已安装成功，只是【php-fpm】那里卡住了
+		（物理机少见，但虚拟机比较常见），解决的方法就是：使用命令【pkill -9 php-fpm】杀掉【php-fpm】进程，
+		然后重新启动该进程【/etc/rc.d/init.d/php-fpm start】即可。
+
+
+
+Available Packages
+389-ds-base.i686 1.2.11.15-29.el6 c6-media 
+389-ds-base-devel.i686 1.2.11.15-29.el6 c6-media 
+389-ds-base-libs.i686 1.2.11.15-29.el6 c6-media 
+......省略部分内容......
+可以从后面的【c6-media】看出这是光盘yum源，因为这是光盘yum源文件【CentOS-Media.repo】中定义的名字。
+
+
+
+总用量 16
+-rw-r--r--. 1 root root 1706 11月 27 2013 RPM-GPG-KEY-CentOS-6
+-rw-r--r--. 1 root root 1730 11月 27 2013 RPM-GPG-KEY-CentOS-Debug-6
+-rw-r--r--. 1 root root 1730 11月 27 2013 RPM-GPG-KEY-CentOS-Security-6
+-rw-r--r--. 1 root root 1734 11月 27 2013 RPM-GPG-KEY-CentOS-Testing-6
+[root@CentOS6 rpm-gpg]#
+
+
+Linux内核版本  
+	http:www.kernel.org
+	Linux发行版本
+	nginx Apache 阿帕奇（标志为一个羽毛）NGINX（占用资源少，同时提供更高的访问量）
+	Mysql，php，samba，mongoDB，python（脚本语言），Ruby，sphinx
+	可通过www.netcraf.com查询网站后台以及后台分布
+
+压缩包 *.gz *.bz2 *.tar.bz2  *.tgz
+二进制 .rpm
+配置文件 .config
+
+6.设备文件名
+	1）/dev/hda1 IDE硬盘接口
+	/dev/sda1 SCSI硬盘接口、SATA硬盘接口
+	hd,sd是设备文件名，a代表第一块硬盘，1表示第一个分区
+	逻辑分区编号从5开始
+	2）linux：分区，格式化，起个设备文件名，分配盘符
+	3）window：分区，格式化，分配盘符
+
+7.挂载
+	1）把盘符和分区连在一起的过程称为挂载，把目录称为挂载点。盘符表示挂载点。
+	2）必须分区
+	/ 根分区
+	swap 交换分区，内存小于4G建议为内存两倍，大于4G则按1:1分配
+	3）推荐分区
+	/boot 启动分区，200MB，建议单独分区，若该包含该目录的分区空间不足可能使系统起不来
+
+
+	sudo apt-get update
+	sudo apt-get install vim 安转vim
+	cc -v 检查版本
+	：sp  打开多个vim
+	ctro+w+  down
+	:set nu 打开行号
+	9 + dd 剪切
+	p 粘贴
+	gcc -c max.c -o max.o 编译成库函数
+	echo $? 0--正常
+
+	int main(int argc,char* []) 
+	argc 参数个数
+	char 参数值
+
+	stdin 标准输入流：键盘 fscanf(stdin,"%d",&a);
+	stdout 标准输出流：显示器 fprintf(stdout,"");
+	stderr 标准错误流 fprintf(stderr,"");
+	fprintf(stderr,"The value must > 0");在输入有误时提示错误信息！
+
+	输出流：
+	./a.out 1>> a.text 把结果重定向到.txt文件里 不会覆盖原文件内容（日志）
+	ls /etc >> etc.txt
+	ls /etc > etc.txt 只有最后的一份  覆盖文件（）最新数据
+	输入流：
+	./a.out < input.txt 自动读取数据
+
+	ls /etc/ | grep ab 包含ab的文件  前一个命令的结果做为后一个命令的输入流
+	ps -e 进程
+	ps -e | grep ssh 
+
+
+
+Linux权限管理之基本权限
+		Linux权限管理之基本权限
+		正常情况应该为：部门负责人为管理员，所有工程师为普通用户
+		1.文件基本权限****
+		-rw-r--r--	第一个-表示文件类型（-文件 d目录 l软链接文件）
+		rw-（u所有者） r--（g所属组） r--（o其他人）
+		r读 w写 x执行
+		chmod命令 修改文件权限模式
+		chmod [选项] 模式 文件名
+		chmod u+x user.sh	给user用户添加执行权限，只有user才可以执行
+		chmod g+w,o+w user.sh 给用户组以及其他用户添加写权限
+		chmod u-x,g-w,o-w user.sh 将刚刚赋予的权限全部删掉
+		chmod a=rwx user.sh chmod u=rwx,g=rw user.sh 用 = 可以直接赋予权限，用a直接给所有人赋予权限
+		权限也可以用数字表示：r---4 w---2 x---1
+		rwxr-xr-x 就可以用755表示
+		chmod 755 user.sh
+		再改为普通的文件权限-rw-r--r-- 就可以 chmod 644 user.sh
+		常用权限：777最高权限 644常用文件权限 755执行权限
+
+文件夹----》文件----》文件数据
+		（1）数据是放在文件中的。
+		（2）文件名是放在目录中的。
+		（3）分区比较：
+		【1】文件内容和文件是放在一块区域的空间下。
+		【2】二文件名是放在文件夹的那块区域的空间下。
+		【3】所以对文件有【写权限】，是不能够删除文件的【原因：】文件名是放在文件夹的那个空间下的， 你并没有给文件夹的删除权限，所以他的下级文件是没办法删除的
+
+		权限对文件的作用
+		rwx读写执行到底能干嘛呢？
+		r：读取文件内容（cat/more/head/tail）
+		w: 编辑、新增、修改文件内容（vi/vim/echo）(echo 内容 >>/> 文件名)
+		虽然w是写权限，但是不包含删除文件。
+
+		权限对目录的作用
+		r:可以查 询目录下文件名（ls）
+		w:具有修改目录结构的权限。如新建文件和目录，删除此目录下的文件和目录，重命名此目录下文件和目录，剪切（touch rm mv cp)
+		x:可以进入目录（cd）
+		对文件来讲;最高权限是 x
+		对目录来讲：最高权限是 w
+		对目录来讲，只有0 5 7 权限成立，只有进入目录1才可以有执行2，
+		其他权限没有意义，而且目录的最高权限是w，权限是对下一层内容来说的
+
+		修改文件所有者：chown 用户名 文件名
+		修改文件所属组：chgrp 组名 文件名
+		同时改变所有者和所属组：chown 用户名：用户名 文件名
+		所有者：所属组
+		分配权限核心原则：在最小权限下能够实现要求
+
+		windows中的文件默认权限全部从上一级继承而来。
+		linux中查看默认权限umask
+		0022 第一位0特殊权限，默认权限为0022（此为root用户等）
+		注：其他用户[UID>199]默认权限是0002，在/etc/profile下可以看见
+
+		umask 0022 临时生效
+		/etc/profile 永久生效
+
+		文件默认没有执行权限，必须手工赋予。故而默认最大权限为666。
+		666= -rw-rw-rw-
+		022= -----w--w- 666-022=-rw-r--r--
+		文件默认最大权限为777 umask默认为0000 默认权限为777
+
+
+shell编程之变量
+		用户自定义变量
+			（shell中变量值默认都为字符串类型）
+			1 定义变量： 变量名=变量值
+			2 调用变量： echo $变量名
+			3 变量叠加（追加）： x=123 x="$x"456或者x=${x}789
+			4 变量查看：set（查询系统下所有已生效的变量--环境变量。自定义变量）
+			-u：如果设定此选项，调用未声明变量时会报错
+			5 删除变量：unset 变量名（不用加$）
+		环境变量
+			#！/bin/bash
+			chmod 755 hellod.sh 执行
+			$PS1  命令提示符设置
+			export
+		  env 查看环境变量
+			HOSTNAME 主机名
+			SHELL 当前的shell
+			TERM 终端环境
+			HISTSIZE 历史命令条数
+			SSH_CLIENT 当前操作环境是用SSH连接的，这里记录客户端ip
+			SSH_TTY ssh连接的终端时pts/1
+			USER 当前登陆的用户
+		预定义变量
+			locale 查询当前系统语系
+			locale -a 
+			/etc/syscnfig/i18n 下次开机默认的语言
+			-LANG 定义系统主语系的变量
+			-LC_ALL 定义整体语系的变量
+		位置变量
+			$n n为数字，$0代表命令本身，$1-$9代表第1-9个参数，十以上的参数需要使用大括号包含，${10}
+			$* 代表命令行中的所有参数，并把所有参数看做一个整体
+			$@ 也代表所有参数，但是把每个参数区分对待
+			$# 命令行中所有参数的个数
+			例子：求和
+			#! /bin/bash
+			num1=$1
+			num2=$2
+			sum=$(($num1+$num2))
+			echo $sum
+			例子：验证$*和$@的区别
+			#! /bin/bash
+			for i in "$*"
+			do
+			echo "The parameters is: $i"
+			done
+
+			for y in "$@"
+			do
+			echo "Parameter:$y"
+			done
+
+    预定义变量
+    	ctrl+c和ctrl+z都是中断命令,但是他们的作用却不一样.
+			ctrl+c是强制中断程序的执行,
+			而ctrl+z的是将任务中断,但是此任务并没有结束,他仍然在进程中他只是维持挂起的状态,用户可以使用fg/bg操作继续前台或后台的任务,fg命令重新启动前台被中断的任务,bg命令把被中断的任务放在后台执行.
+			例如:
+			当你vi一个文件是,如果需要用shell执行别的操作,但是你又不打算关闭vi,因为你得
+			存盘推出,你可以简单的按下ctrl+z,shell会将vi进程挂起~,当你结束了那个shell操作之后,你可以用fg命令继续vi你的文件.
+			
+			$? 最后一次执行的命令的返回状态。如果这个值为0，证明上一个命令正确执行，如果这个变量的值为非0，则证明上一个命令执行不正确了
+			$$ 当前进程的进程号（PID)
+			$! 后台运行的最后一个进程的进程号
+
+			read -p "" -t 30 name 接收输入的字符
+			read -p "" -s pwsswad 不显示内容
+			read -p "" -n 1 sex 控制输入的字符数量
+
+
+shell编程之运算符
+	1.declare声明变量类型
+		declare [+/-][选项] 变量名	
+			-给变量设定类型属性，+取消变量的类型属性，
+			-a将变量声明为数组型，-i将变量设定为整型，
+			-x声明为环境变量，-r设置为只读属性
+			-p 显示类型
+		例如：aa=11 bb=22 --> declare -i cc=$aa+$bb
+	2.声明数组变量
+		定义数组：movie[0]=zp movie[1]=tp declare -a movie[2]=live
+		调用数组：echo ${movie} 表示调用第一个
+		echo ${movie[1]} 表示调用第二个
+		echo ${movie[*]} 表示显示数组中的所有元素
+		3.声明环境变量
+		declare -x test =123 作用与export相同
+
+	数值运算
+		方法1：declare -i dd =$aa+$bb
+
+		方法2： dd=$(expr $aa + $bb)
+		#dd的值是aa和bb的和，注意“+”左右必须有空格
+
+		方法3： dd=$(($aa+$bb))或dd= $[$aa+$bb]
