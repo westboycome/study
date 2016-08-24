@@ -866,13 +866,120 @@ shell编程之条件判断与流程控制
 		判断1 -a 判断2：逻辑与，判断1和判断2都成立，最终结果为真
 		判断1 -o 判断2：逻辑或，判断1和判断2有一个成立，最终结果为真
 		！判断：逻辑非，是原始的判断式取反
+
+单分支if语句		
+		# if和[之间要有空格，[ 与"$test"；"$test"与== 等之间也要有空格
+				#!/bash/bash
+		test=$(env |grep "USER" |cut -d "=" 2)
+		if [ "$test" == root ]
+		        then
+		        echo "Current user is root"
+		fi		
 		
+		#!/bin/bash
+
+		read -t 30 -p "Please input yes/no:" cho
+
+		case "$cho" in
+		"yes")
+		echo "You input yes!"
+		;;
+		"no")
+		echo "You input no!"
+		;;
+		*)
+		echo "Please input yes/no!"
+		;;
+		esac
+
+		#!/bin/bash
+
+		cd /root/test
+		ls *.tar.gz > ls.log(>覆盖)
+		ls *.tgz >> ls.log(>>添加)
+		for i in $(cat ls.log)
+		do
+		tar -zxvf $i & > /dev/null
+		done
+		rm -rf ls.log
+
+
+Shell典型应用之主控脚本实现
+		VIM编辑器设置
+		1、设置方式分类
+		临时性的设置（末行模式设置）
+		永久性的设置（修改vimrc文件）
+		2、高亮模式设置：
+		syntax on/off（末行模式下，临时生效）
+		/etc/vimrc或家目录下/home/jeson/.vimrc（添加syntax on/off,设置永久的）
+	
+		echo -e 终端颜色 + 显示内容+结束后的颜色
+		echo -e "\e[1;30m Jeson say Hi~ \e[1;0m" //1为设置终端颜色，0为相反；0m为黑色
+		echo -e "\e[1;30m" "Jeson say Hi~" $(tput sgr0) 变量的意思是初始化输入的终端
+	  #字符高亮显示 echo -e "\e[1;35m" "sting" "\e[1;0m"
+		resettem=$(tput sgr0) #恢复系统默认高亮显示tput sgr0或\e[1;0m
+		"\e[1;35m" +string+ resettem #设置字符串高亮
+		declare -A ssharray #定义关联数组
+		ssharray[$i]=${script_file} #使用关联数组
+	
+		set nonumber 关闭行号
+		set number 打开行号 
+		set autoindent
+		set cindent  自动退格
 		
+		 50   syntax on                                          
+		 51   set autoindent                                     
+		 52   set cindent                                        
+		 53   "set cursorline                                    
+		 54   set ru                      
+		 55   set number                 
+		 56   set cursorcolumn"          
+		 57   autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
+		 58   let $author_name = "xiaoheizi"
+		 59   let @author_email = "lifuhei@139.com"
+		 60                    
+		 61   func SetTitle() 
+		 62   if &filetype == 'sh'  63   call setline(1,"\#################################################")
+		 64   call append(line("."),"\# File Name:".expand("%"))
+		 65   call append(line(".")+1,"\# Author:".$author_name)
+		 66   call append(line(".")+2,"\# mail:".$author_email)
+		 67   call append(line(".")+3,"\# Created Time:".strftime("%c"))
+		 57   autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"      
+		 58   let $author_name = "xiaoheizi"                    
+		 59   let @author_email = "lifuhei@139.com"             
+		 60      
+		 61   func SetTitle()                                   
+		 62   if &filetype == 'sh'                              
+		 63   call setline(1,"\#################################################")
+		 64   call append(line("."),"\# File Name:".expand("%"))
+		 65   call append(line(".")+1,"\# Author:".$author_name)
+		 66   call append(line(".")+2,"\# mail:".$author_email) 
+		 67   call append(line(".")+3,"\# Created Time:".strftime("%c"))         
+		 68   call append(line(".")+4,"\# ======================================") 69   call append(line(".")+5,"\#!/bin/bash")      
+		 70   call append(line(".")+6,"")                  
+		 71   else                       
+		 72   call setline(1,"\#################################################")
+		 73   call append(line("."),"\# File Name:".expand("%"))                 
+		 74   call append(line("."),"\# File Name:".expand("%"))                 
+		 75   call append(line(".")+1,"\# Author:".$author_name)                 
+		 76   call append(line(".")+2,"\# mail:".$author_email)                  
+		 77   call append(line(".")+3,"\# Created Time:".strftime("%c"))         
+		 78   call append(line(".")+4,"\# ======================================" 79   call append(line(".")+5,"\#!/uer/bin/python")       
+		 80   call append(line("."+6,"")
+
 		
-		
-		
-		
-		
+		关于shell中：>/dev/null 2>&1 详解
+		1：> 代表重定向到哪里，例如：echo "123" > /home/123.txt
+		2：/dev/null 代表空设备文件
+		3：2> 表示stderr标准错误
+		4：& 表示等同于的意思，2>&1，表示2的输出重定向等同于1
+		5：1 表示stdout标准输出，系统默认值是1，所以">/dev/null"等同于 "1>/dev/null"
+		因此，>/dev/null 2>&1也可以写成“1> /dev/null 2> &1”
+		PS:Command >/dev/null 2>&1 相当于stdout="/dev/null"
+		stderr="$stdout" 这时，stderr也等于"/dev/null"了 
+		结果是标准输出和标准错误都指向了/dev/null， 也就是所有的输出都被我们丢弃 
+		Command 2>&1 >/dev/null 相当于stderr="$stdout" stderr指向了屏幕，因为stdout这时还是指向屏幕！stdout="/dev/null" stdout指向了/dev/null，但不会影响到 stderr的指向 
+		结果是标准错误仍然被打印到屏幕上， 而标准输出被丢弃A=100; B=A和 B=A, A=100
 		
 		
 		
