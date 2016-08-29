@@ -981,16 +981,60 @@ Shell典型应用之主控脚本实现
 		Command 2>&1 >/dev/null 相当于stderr="$stdout" stderr指向了屏幕，因为stdout这时还是指向屏幕！stdout="/dev/null" stdout指向了/dev/null，但不会影响到 stderr的指向 
 		结果是标准错误仍然被打印到屏幕上， 而标准输出被丢弃A=100; B=A和 B=A, A=100
 		
+系统信息监控及脚本
+	free -m
+	系统使用内存=Total-free
+	应用使用内存=Total-(Free+Cached+Buffers)
+	cache：缓存打开的文件 最少使用原则
+	buffers：缓存目录、iNode文件 先进先出原则
+	
+	top -n 1 -b 读取负载	
+	
+Shell典型应用之nginx和mysql应用状态分析
+	网络命令ping
+	nslookkup 检查dns
+	nm-tool、tracertroute、telnet nc 路由 网络
+	dig 
+	curl	http相应
+	监控进程 ps /netstart pgrep
+		
+监控nginx脚本
+		#!/bin/bash
+		Resettem=$(tput sgr0)
+		Nginxserver='http://x.x.x.x/nginx_status'
+		Check_Nginx_Server()
+		{
+		Status_Code=$(curl -m 5 -s -w %{http_code} ${Nginxserver} -o /dev/null)
+		if [ $Status_Code -eq 000 -o $Status_Code -ge 500 ]
+		then
+		echo -e '\E[32m' "Check http server error! Response status code is" $Resettem $Status_code
+		else
+		Http_content=$(curl -s ${Nginxserver})
+		echo -e '\E[32m' "Check http server ok! \n" $Resettem $Http_content
+		fi
+		}
+
+		Check_Nginx_Server		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
+Shell典型应用之应用日志分析
+	系统日志文件分为三种：一般日志文件（var/log/messages、var/log/secure、var/log/demsg）、
+	应用服务（access·log、Mysqld·log、xfer·log）、
+	脚本（开发语言CC++、框架Django MVC servlet、脚本语言php Python）		
+	
+	$remote_addr 是指IP，[$time_local]是当下时间，$request是指URL，$status是状态，$body_bytes_send是发送字节数，
+	$Http_refer是指上一页的链接,$Http_user_agent是URL的头,$Http_x_forwarded_for是指真实的IP	
+	
+	HTTP状态码意义:<br>
+	1服务器收到请求,需要请求者继续操作
+	2成功 
+	3重定向 
+	4客户端错误 
+	5服务器错误	
+	
+	grep -i 不区分大小写
+			 -o 精确的输出
+			 -E 正则
 		
 		
 		
