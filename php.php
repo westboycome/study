@@ -67,6 +67,7 @@ var_dump()方法是判断一个变量的类型与长度,并输出变量的数值,如果变量输入的是变量的
 		()：优先解析该符号中的内容
 		输入完毕后，按TAB键即可生成。
 		
+<<<<<<< HEAD
 		使用mysqli_connect('localhost','root','user')更安全
 		
 		通过mysql_select_db函数来选择数据库。
@@ -89,3 +90,6 @@ var_dump()方法是判断一个变量的类型与长度,并输出变量的数值,如果变量输入的是变量的
 		mysql_fetch_object($query)返回的是对象
 		注：$query是使用 mysql_query 执行sql命令后返回的结果集标识符。
 		 mysql_num_rows是计算结果集的条数，所以参数必须是结果集标识符。
+=======
+		可以
+>>>>>>> d28bca0e97084aa45337e0655bd9c7d9c39bb478
