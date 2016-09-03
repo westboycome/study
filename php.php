@@ -20,9 +20,14 @@
 		新版本的应该是把httpd-vhosts.conf的配置打开，要同时修改httpd-vhosts.conf 下的项目路径，
 		修改如下：打开wamp安装目录下对的\bin\apache\apache2.4.18\conf\extra\httpd-vhosts.conf文件：修改DocumentRoot 和Directory 的文件路径
 
+	wamp下的wampmanager.ini和wampmanager.tpl
+	
+
 WAMPserver多站点配置方法（管理运行多个网站和项目）：<br>
 		1、添加站点<br>
-		在wamp/bin/apache/Apache2.5/conf/extra中找到并打开httpd-vhosts.conf文件，打开，添加多个站点，复制粘贴两下。SeverAdmin--设置管理员的邮箱地址；DocumentRoot--文件目录，指向网站代码指向的目录；ServerName--主机名；ErrorLog--错误日志；CustomLog--日常日志。只用到documentname和servername，其他可删掉。documentroot改成E:/Demo/test01，servername改为test01.com。<br>
+		在wamp/bin/apache/Apache2.5/conf/extra中找到并打开httpd-vhosts.conf文件，打开，添加多个站点，复制粘贴两下。
+		SeverAdmin--设置管理员的邮箱地址；DocumentRoot--文件目录，指向网站代码指向的目录；ServerName--主机名；
+		ErrorLog--错误日志；CustomLog--日常日志。只用到documentname和servername，其他可删掉。documentroot改成E:/Demo/test01，servername改为test01.com。<br>
 		2、引入httpd-hosts文件<br>
 		打开Apache->httpd.conf文件，找到virtual hosts<br>
 		#Include conf/extra/httpd-vhosts.conf 将Include前的'#'去掉。<br>
@@ -34,7 +39,8 @@ WAMPserver多站点配置方法（管理运行多个网站和项目）：<br>
 		在最后添加两行：127.0.0.1 test01.com和
 		test02.com
 
-var_dump()方法是判断一个变量的类型与长度,并输出变量的数值,如果变量输入的是变量的值并回返数据类型.
+var_dump()方法是判断一个变量的类型与长度,并输出变量的数值,
+如果变量输入的是变量的值并回返数据类型.
 
 		<?php 
 		//首先采用“fopen”函数打开文件，得到返回值的就是资源类型。
@@ -66,4 +72,54 @@ var_dump()方法是判断一个变量的类型与长度,并输出变量的数值,如果变量输入的是变量的
 		()：优先解析该符号中的内容
 		输入完毕后，按TAB键即可生成。
 		
-		可以
+mysql_affected_rows($resource);返回最近操作影响的行数。注意一下问题：
+		1、如果本次mysql语句未对数据库进行修改，则返回为0.
+		2、该函数只能检测离其最近的一条mysql语句对数据库的修改，其他的修改则无法判别。
+		
+MySQLi扩展库
+	Mysqlli扩展相对于MySQL扩展的优势：
+		1、基于面向过程和面向对象的使用
+		2、支持预处理语句
+		3、支持事物
+		
+		修改php.ini文件
+		php_mysqli.dll 去掉前面的.
+		extension_dir	
+		
+		phpinfo();
+		affected_rows返回值有3种：
+		1.返回受影响的记录条数。
+		2.返回-1，表示SQL语句有问题。
+		3.返回0，表示没有受影响的条数。
+		
+		多条sql语句的执行（$sql="执行语句1；执行语句2；执行语句3"）：
+		1、$mysqli->multi-query($sql); 只有在第一条语句执行成功的情况，返回true。
+		2、use_result()或store_result()得到查询的结果集。
+		3、more_result()检测是否有更多的结果集。
+		4、next_result()将结果集指针向下移动一位。
+		
+		sql注入 or 1=1 #
+		$mysqli->autocommit(true/false);
+		$mysqli->commit();
+		$mysqli->rollback();
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
