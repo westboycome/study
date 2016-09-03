@@ -927,46 +927,48 @@ Shell典型应用之主控脚本实现
 		set autoindent
 		set cindent  自动退格
 		
-		 50   syntax on                                          
-		 51   set autoindent                                     
-		 52   set cindent                                        
-		 53   "set cursorline                                    
-		 54   set ru                      
-		 55   set number                 
-		 56   set cursorcolumn"          
-		 57   autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
-		 58   let $author_name = "xiaoheizi"
-		 59   let @author_email = "lifuhei@139.com"
-		 60                    
-		 61   func SetTitle() 
-		 62   if &filetype == 'sh'  63   call setline(1,"\#################################################")
-		 64   call append(line("."),"\# File Name:".expand("%"))
-		 65   call append(line(".")+1,"\# Author:".$author_name)
-		 66   call append(line(".")+2,"\# mail:".$author_email)
-		 67   call append(line(".")+3,"\# Created Time:".strftime("%c"))
-		 57   autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"      
-		 58   let $author_name = "xiaoheizi"                    
-		 59   let @author_email = "lifuhei@139.com"             
-		 60      
-		 61   func SetTitle()                                   
-		 62   if &filetype == 'sh'                              
-		 63   call setline(1,"\#################################################")
-		 64   call append(line("."),"\# File Name:".expand("%"))
-		 65   call append(line(".")+1,"\# Author:".$author_name)
-		 66   call append(line(".")+2,"\# mail:".$author_email) 
-		 67   call append(line(".")+3,"\# Created Time:".strftime("%c"))         
-		 68   call append(line(".")+4,"\# ======================================") 69   call append(line(".")+5,"\#!/bin/bash")      
-		 70   call append(line(".")+6,"")                  
-		 71   else                       
-		 72   call setline(1,"\#################################################")
-		 73   call append(line("."),"\# File Name:".expand("%"))                 
-		 74   call append(line("."),"\# File Name:".expand("%"))                 
-		 75   call append(line(".")+1,"\# Author:".$author_name)                 
-		 76   call append(line(".")+2,"\# mail:".$author_email)                  
-		 77   call append(line(".")+3,"\# Created Time:".strftime("%c"))         
-		 78   call append(line(".")+4,"\# ======================================" 79   call append(line(".")+5,"\#!/uer/bin/python")       
-		 80   call append(line("."+6,"")
-
+		syntax on                                          
+		set autoindent                                     
+		set cindent                                        
+		"set cursorline                                    
+		set ru                      
+		set number                 
+		set cursorcolumn"          
+	  autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
+		let $author_name = "xiaoheizi"
+		let @author_email = "lifuhei@139.com"
+		                  
+		func SetTitle() 
+		if &filetype == 'sh'  63   call setline(1,"\#################################################")
+		call append(line("."),"\# File Name:".expand("%"))
+		call append(line(".")+1,"\# Author:".$author_name)
+		call append(line(".")+2,"\# mail:".$author_email)
+		call append(line(".")+3,"\# Created Time:".strftime("%c"))
+		autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"      
+		let $author_name = "xiaoheizi"                    
+	  let @author_email = "lifuhei@139.com"             
+	      
+		func SetTitle()                                   
+		if &filetype == 'sh'                              
+		call setline(1,"\#################################################")
+		call append(line("."),"\# File Name:".expand("%"))
+		call append(line(".")+1,"\# Author:".$author_name)
+		call append(line(".")+2,"\# mail:".$author_email) 
+		call append(line(".")+3,"\# Created Time:".strftime("%c"))         
+		call append(line(".")+4,"\# ======================================") 69   call append(line(".")+5,"\#!/bin/bash")      
+		call append(line(".")+6,"")                  
+		else                       
+		call setline(1,"\#################################################")
+		call append(line("."),"\# File Name:".expand("%"))                 
+		call append(line("."),"\# File Name:".expand("%"))                 
+	  call append(line(".")+1,"\# Author:".$author_name)                 
+		call append(line(".")+2,"\# mail:".$author_email)                  
+		call append(line(".")+3,"\# Created Time:".strftime("%c"))         
+		call append(line(".")+4,"\# ======================================" 79   call append(line(".")+5,"\#!/uer/bin/python")       
+		call append(line("."+6,"")
+		endif
+		autocmd BufNewFile * normal G
+		endfunc
 		
 		关于shell中：>/dev/null 2>&1 详解
 		1：> 代表重定向到哪里，例如：echo "123" > /home/123.txt

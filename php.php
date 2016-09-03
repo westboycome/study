@@ -32,7 +32,8 @@ WAMPserver多站点配置方法（管理运行多个网站和项目）：<br>
 		打开Apache->httpd.conf文件，找到virtual hosts<br>
 		#Include conf/extra/httpd-vhosts.conf 将Include前的'#'去掉。<br>
 		3、允许站点访问服务器资源<br>
-		打开Apache->httpd.conf文件，找到onlineoffline tag,修改其后面的Deny from all为Allow from all，同时将Allow from 127.0.0.1修改为注释（前面加‘#’），在2.5版本中，无需进行此操作，默认为Require all granted。<br>
+		打开Apache->httpd.conf文件，找到onlineoffline tag,修改其后面的Deny from all为Allow from all，
+		同时将Allow from 127.0.0.1修改为注释（前面加‘#’），在2.5版本中，无需进行此操作，默认为Require all granted。<br>
 		4、为站点添加资源:Demo里创建test01、test02文件夹，文件夹下分别创建index.php文件<br>
 		5、设置本机访问这些站点时从本机获取资源<br>
 		打开c:/windows/system32/drivers/etc/hosts<br>
@@ -72,6 +73,7 @@ var_dump()方法是判断一个变量的类型与长度,并输出变量的数值,
 		()：优先解析该符号中的内容
 		输入完毕后，按TAB键即可生成。
 		
+<<<<<<< HEAD
 mysql_affected_rows($resource);返回最近操作影响的行数。注意一下问题：
 		1、如果本次mysql语句未对数据库进行修改，则返回为0.
 		2、该函数只能检测离其最近的一条mysql语句对数据库的修改，其他的修改则无法判别。
@@ -123,3 +125,31 @@ MySQLi扩展库
 		
 		
 		
+=======
+<<<<<<< HEAD
+		使用mysqli_connect('localhost','root','user')更安全
+		
+		通过mysql_select_db函数来选择数据库。
+		mysql_query("set names 'utf8'");
+		$res = mysql_query('select * from user limit 1');
+		对于查询类的语句会返回一个资源句柄（resource），可以通过该资源获取查询结果集中的数据。
+		$row = mysql_fetch_array($res);
+		var_dump($row);
+		在mysql中，执行插入语句以后，可以得到自增的主键id,通过PHP的mysql_insert_id函数可以获取该id。
+		$uid = mysql_insert_id();
+		
+		mysql_fetch_row每执行一次，都从资源也就是结果集里依次取一条数据，
+		以数组的形式返回出来，当前一次已经取到最后一条数据的时候，这一次返回空结果。
+		返回的数组是一个一维索引数组，每一个下标与数据库里字段的排序相对应。
+		
+		mysql_fetch_assoc($resouce);
+		等同于
+		mysql_fetch_array($resouce,MYSQL_ASSOC);
+		用来取多条数据
+		mysql_fetch_object($query)返回的是对象
+		注：$query是使用 mysql_query 执行sql命令后返回的结果集标识符。
+		 mysql_num_rows是计算结果集的条数，所以参数必须是结果集标识符。
+=======
+		可以
+>>>>>>> d28bca0e97084aa45337e0655bd9c7d9c39bb478
+>>>>>>> 962e40521927056499b29596f9e0f3bf8316d11f
