@@ -103,7 +103,114 @@ MySQLi扩展库
 		$mysqli->commit();
 		$mysqli->rollback();
 		
-		
+	mb_strlen()函数获取字符串中中文长度。
+	$len = strlen($str);
+	$str='i love you';
+	//截取love这几个字母
+	echo substr($str, 2, 4);//为什么开始位置是2呢，因为substr函数计算字符串位置是从0开始的，
+	也就是0的位置是i,1的位置是空格，l的位置是2。从位置2开始取4个字符，就是love。
+	中文字符串的截取函数mb_substr()
+	
+	$str = 'I want to study at imooc';
+	$pos = strpos($str, 'imooc');
+	echo $pos;//结果显示19，表示从位置0开始，imooc在第19个位置开始出现
+	
+	$str = 'I want to learn js';
+	$replace = str_replace('js', 'php', $str);
+	
+	php字符串合并函数implode()
+	php字符串分隔函数explode()
+	preg_match用于执行一个正则匹配，常用来判断一类字符模式是否存在。
+	
+	\ 一般用于转义字符
+	^ 断言目标的开始位置(或在多行模式下是行首)
+	$ 断言目标的结束位置(或在多行模式下是行尾)
+	. 匹配除换行符外的任何字符(默认)
+	[ 开始字符类定义
+	] 结束字符类定义
+	| 开始一个可选分支
+	( 子组的开始标记
+	) 子组的结束标记
+	? 作为量词，表示 0 次或 1 次匹配。位于量词后面用于改变量词的贪婪特性。 (查阅量词)
+	* 量词，0 次或多次匹配
+	+ 量词，1 次或多次匹配
+	{ 自定义量词开始标记
+	} 自定义量词结束标记
+	
+	preg_match用来执行一个匹配，
+	
+PHP设置Cookie最常用的方法就是使用setcookie函数，setcookie具有7个可选参数，我们常用到的为前5个：
+	name（ Cookie名）可以通过$_COOKIE['name'] 进行访问
+	value（Cookie的值）
+	expire（过期时间）Unix时间戳格式，默认为0，表示浏览器关闭即失效
+	path（有效路径）如果路径设置为'/'，则整个网站都有效
+	domain（有效域）默认整个域名都有效，如果设置了'www.imooc.com',则只在www子域中有效
+	
+	//* 将用户数据保存到cookie中的一个简单方法 */
+	$secureKey = 'imooc'; //加密密钥
+	$str = serialize($userinfo); //将用户信息序列化
+	//用户信息加密前
+	$str = base64_encode(mcrypt_encrypt(MCRYPT_RIJNDAEL_256, md5($secureKey), $str, MCRYPT_MODE_ECB));
+	//用户信息加密后
+	//将加密后的用户数据存储到cookie中
+	setcookie('userinfo', $str);
+
+	//当需要使用时进行解密
+	$str = mcrypt_decrypt(MCRYPT_RIJNDAEL_256, md5($secureKey), base64_decode($str), MCRYPT_MODE_ECB);
+	$uinfo = unserialize($str);
+	echo "解密后的用户信息：<br>";	
+	
+	file_get_contents，可以将整个文件全部读取到一个字符串中。
+	判断文件存在的函数有两个is_file与file_exists.
+	is_readable与is_writeable在文件是否存在的基础上，判断文件是否可读与可写。
+	
+	fileowner：获得文件的所有者
+	filectime：获取文件的创建时间
+	filemtime：获取文件的修改时间
+	fileatime：获取文件的访问时间
+	filesize();获取文件的大小
+	strtotime（）；
+	
+GD
+	header("content-type: image/png");
+	//创建
+	$img=imagecreatetruecolor(100, 100);
+	//确定画笔的颜色：
+	$red=imagecolorallocate($img, 0xFF, 0x00, 0x00);
+	//绘制线段函数
+	imageline($img, 0, 0, 100, 100, $red);
+	//可以通过$font来设置字体的大小，x,y设置文字显示的位置，$s是要绘制的文字,$col是文字的颜色。
+	magestring ( resource $image , int $font , int $x , int $y , string $s , int $col )，
+	//绘制点来实现噪点干扰
+	imagesetpixel($im, rand(0, 100) , rand(0, 100) , $black); 
+	imagefill($img, 0, 0, $red);
+	//图像的输出。保存
+	imagepng($img);
+	//直接从图片文件创建图像。
+	imagecreatefromjpeg($filename);
+	//给图片添加水印
+	imagecopy($im, $logo, 15, 15, 0, 0, $width, $height);
+	imagejpeg($im, $filename);
+	
+Exception具有几个基本属性与方法，其中包括了：
+	message 异常消息内容
+	code 异常代码
+	file 抛出异常的文件名
+	line 抛出异常在该文件的行数
+
+	getTrace 获取异常追踪信息
+	getTraceAsString 获取异常追踪信息的字符串
+	getMessage 获取出错信息
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	imagedestroy($img);	
 		
 		
 		
