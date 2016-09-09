@@ -202,14 +202,7 @@ Exception具有几个基本属性与方法，其中包括了：
 	getTraceAsString 获取异常追踪信息的字符串
 	getMessage 获取出错信息
 	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 	imagedestroy($img);	
 		
 		
