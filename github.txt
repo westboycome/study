@@ -1,0 +1,7 @@
+删除文档
+find . name ".git" | xargs rm -Rf
+下载远程仓库
+git clone git@github.com:westboycome/study.git
+上传本地仓库
+git remote add origin git@github.com:westboycome/study.git
+
