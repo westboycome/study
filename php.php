@@ -206,7 +206,14 @@ Exception具有几个基本属性与方法，其中包括了：
 	imagedestroy($img);	
 		
 		
-		
+ThinkPHP
+URL_MODEL
+	0 普通模式
+	1 默认模式
+	2 重写模式
+	3 谦容模式
+			
+	U（'模块/方法',array(),'xxxx html sthml 后缀名',true/false,'localhost'）
 		
 		
 		

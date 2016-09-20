@@ -29,3 +29,79 @@ B 128-191
 C 192-223
 
 netstat -an 查看本机使用的端口号
+
+	1.ifconfig命令<br>
+	查看与临时配置网络状态，但无法查看网关和DNS。<br>
+	<br>
+	2.关闭与启动网卡<br>
+	ifdown 网卡设备名 #禁用该网卡设备<br>
+	ifup 网卡设备名 #启用该网卡设备<br>
+	
+	3.查询网络状态<br>
+	netstat 选项<br>
+	选项：一般为tuln或an<br>
+	-t：列出TCP协议端口<br>
+	-u：列出UDP协议端口<br>
+	-n：不使用域名与服务名，而使用IP地址和端口号<br>
+	-l：仅列出在监听状态的网络服务<br>
+	-a：列出所有的网络连接<br>
+	<br>
+	统计计算机建立的远程连接数：netstat -an grep ESTABLISHED wc -l<br>
+	<br>
+	netstat -rn #查看网关<br>
+	选项：<br>
+	-r：列出路由表，功能和route命令一致。<br>
+	<br>
+	4.route命令<br>
+	route -n #查看路由列表(可以看到网关)<br>
+	<br>
+	5.域名解析命令<br>
+	nslookup [主机名或IP] #进行域名与IP地址解析<br>
+	<br>
+	nslookup<br>
+	>server #本地设定的DNS的地址<br>
+	>exit #退出1.ifconfig命令<br>
+	查看与临时配置网络状态，但无法查看网关和DNS。
+	
+	ping ip地址 -c  3(次数)
+	telnet ip 端口 //远程管理 端口测试
+	tranceroute www.imooc.com //路由追踪
+	wget 下载地址  //下载命令
+	tcpdump -i eth0 -nnX port 21 // 抓包
+		-i  指定网卡接口
+		-nn  将数据宝中的域名与服务转为IP和端口
+		-X  以十六进制显示
+		port 指定监听端口
+		
+SSH命令
+		ssh 用户名@ip ：若当前用户名和要登录的用户名一样，则可以省略，直接输入ssh ip 即可。
+		scp命令是linux和linux之间远程传递文件最简单最安全的方式。（ SCP = Secure Copy Protocol )
+		scp 源文件 目标文件（当copy目录时，使用-r参数）
+		下载文件：scp [-r] 用户名@ip：文件路径 本地路径
+		上传文件：scp [-r] 本地文件 用户名@ip:上传路径
+		libran
+		非对称加密算法示意图：可以把要传输的数据比喻成圆柱体，
+		圆柱体的两端分别是自己的公钥和对方的公钥，任何一方都可以通过自己的密码+密钥打开圆柱体的一面，从而看到传输的信息。
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		

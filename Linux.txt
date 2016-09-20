@@ -551,6 +551,84 @@ Linux权限管理之基本权限
 		文件默认最大权限为777 umask默认为0000 默认权限为777
 
 
+Linux权限管理之特殊权限
+		查看分区ACL权限是否开启：
+		· dumpe2fs -h /dev/sda5
+		dumpe2fs命令是查询指定分区详细文件系统信息的命令；
+		选项：
+		-h：仅显示超级块中信息，而不显示磁盘块组的详细信息；
+
+		临时开启分区ACL权限
+		· mount -o remount,acl /
+		·重新挂载根分区，并挂在加入ACL权限；
+
+		永久开启分区ACL权限：
+		·vi /etc/fstab
+		··在默认文件系统后加上acl即可
+		----例如UUID=24f28fc6-717e-4bcd-a5f7-32b959024e26 / ext4 defaults,acl 0 1
+
+		·mount -o remount /
+		----重新挂载文件系统或重启动系统，使修改生效；
+		
+	getfacl 文件名 //查看acl权限；
+		setfacl 选项 文件名 //设定ACL权限的命令；
+		选项：
+		-m：设定ACL权限；
+		-x：删除指定的ACL权限；
+		-b：删除所有的ACL权限；
+		-d：设定默认ACL权限；
+		-k：删除默认ACL权限；
+		-R：递归设定ACL权限；
+	为用户设定ACL权限
+		setfacl -m u:用户名:权限(rwx) 文件名
+	为用户组设定ACL权限
+		setfacl -m g:组名:权限(rwx) 文件名
+		
+		最大有效权限mask（使用命令getfacl 文件名显示的结果中倒数第二排会出现mask这个词）
+		mask是用来指定最大有效权限的。如果我给用户赋予了acl权限，是需要和mask的权限“相与”
+		才能得到用户的真正权限。相与是计算机中的术语，皆真方为真，有假便为假。
+		（例：某文件所有者为tony，chmod赋予的普通权限为7，而acl赋予tony的权限为5，则acl权限会高于chmod权限）
+		1.修改mask值的命令 setfacl -m m:rx 文件
+		2.删除acl权限的命令
+		setfacl -x u:用户名 文件 （删除指定用户的acl权限）
+		setfacl -x g:组名 文件 （删除指定组的acl权限）
+		setfacl -b 文件 （删除所有的acl权限）
+		
+		递归权限：在赋予目录权限的同时将权限赋予此文件夹下面的子文件权限
+		setfacl -m u：用户名：权限 -R 目录名
+		
+		默认acl权限：把这个目录下以后所创建的所有文件都赋予某些权限。<br>
+		setfacl -m d（default的缩写）：u：user1 目录名<br>
+		
+	超级用户提供sudo权限给下面的普通用户
+		命令：
+		a)在root用户下，visudo，拉到最底行，写上
+		canglaos ALL=(ALL) /sbin/shutdown -r now，赋予普通用户重启命令，写的越详细越好，保存退出。
+		b)然后在普通用户模式下面，sudo -l ,输入密码，然后sudo /sbin/shutdown -r now，执行命令。
+	授权普通用户添加用户	
+		user1 ALL=/usr/sbin/useradd #赋予user1添加用户的权限
+		user1 ALL=/usr/bin/passwd #赋予user1更改密码的权限
+		user1 ALL=/bin/vi #赋予user1使用vi更改任意文件的权限(包括/etc/shadow阔怕！)
+		（会造成严重后果， 在运行该权限时，是root身份，甚至能更改root密码）
+		加强版
+		user1 ALL=/usr/bin/passwd [A-Za-z]*, !/usr/bin/passwd "", !/usr/bin/passwd root
+		可以更改任意字母的用户密码， 用户名不能为空（如果空，则代表更改当前用户密码，而此时身份为root），用户名不能为root
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 shell编程之变量
 		用户自定义变量
 			（shell中变量值默认都为字符串类型）
