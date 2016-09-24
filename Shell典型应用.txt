@@ -1,0 +1,133 @@
+﻿Shell典型应用之主控脚本实现
+		VIM编辑器设置
+		1、设置方式分类
+		临时性的设置（末行模式设置）
+		永久性的设置（修改vimrc文件）
+		2、高亮模式设置：
+		syntax on/off（末行模式下，临时生效）
+		/etc/vimrc或家目录下/home/jeson/.vimrc（添加syntax on/off,设置永久的）
+	
+		echo -e 终端颜色 + 显示内容+结束后的颜色
+		echo -e "\e[1;30m Jeson say Hi~ \e[1;0m" //1为设置终端颜色，0为相反；0m为黑色
+		echo -e "\e[1;30m" "Jeson say Hi~" $(tput sgr0) 变量的意思是初始化输入的终端
+	  #字符高亮显示 echo -e "\e[1;35m" "sting" "\e[1;0m"
+		resettem=$(tput sgr0) #恢复系统默认高亮显示tput sgr0或\e[1;0m
+		"\e[1;35m" +string+ resettem #设置字符串高亮
+		declare -A ssharray #定义关联数组
+		ssharray[$i]=${script_file} #使用关联数组
+	
+		set nonumber 关闭行号
+		set number 打开行号 
+		set autoindent
+		set cindent  自动退格
+		
+		syntax on                                          
+		set autoindent                                     
+		set cindent                                        
+		"set cursorline                                    
+		set ru                      
+		set number                 
+		set cursorcolumn"          
+	  autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"
+		let $author_name = "xiaoheizi"
+		let @author_email = "lifuhei@139.com"
+		                  
+		func SetTitle() 
+		if &filetype == 'sh'  63   call setline(1,"\#################################################")
+		call append(line("."),"\# File Name:".expand("%"))
+		call append(line(".")+1,"\# Author:".$author_name)
+		call append(line(".")+2,"\# mail:".$author_email)
+		call append(line(".")+3,"\# Created Time:".strftime("%c"))
+		autocmd BufNewFile *.py,*.sh, exec ":call SetTitle()"      
+		let $author_name = "xiaoheizi"                    
+	  let @author_email = "lifuhei@139.com"             
+	      
+		func SetTitle()                                   
+		if &filetype == 'sh'                              
+		call setline(1,"\#################################################")
+		call append(line("."),"\# File Name:".expand("%"))
+		call append(line(".")+1,"\# Author:".$author_name)
+		call append(line(".")+2,"\# mail:".$author_email) 
+		call append(line(".")+3,"\# Created Time:".strftime("%c"))         
+		call append(line(".")+4,"\# ======================================") 69   call append(line(".")+5,"\#!/bin/bash")      
+		call append(line(".")+6,"")                  
+		else                       
+		call setline(1,"\#################################################")
+		call append(line("."),"\# File Name:".expand("%"))                 
+		call append(line("."),"\# File Name:".expand("%"))                 
+	  call append(line(".")+1,"\# Author:".$author_name)                 
+		call append(line(".")+2,"\# mail:".$author_email)                  
+		call append(line(".")+3,"\# Created Time:".strftime("%c"))         
+		call append(line(".")+4,"\# ======================================" 79   call append(line(".")+5,"\#!/uer/bin/python")       
+		call append(line("."+6,"")
+		endif
+		autocmd BufNewFile * normal G
+		endfunc
+		
+		关于shell中：>/dev/null 2>&1 详解
+		1：> 代表重定向到哪里，例如：echo "123" > /home/123.txt
+		2：/dev/null 代表空设备文件
+		3：2> 表示stderr标准错误
+		4：& 表示等同于的意思，2>&1，表示2的输出重定向等同于1
+		5：1 表示stdout标准输出，系统默认值是1，所以">/dev/null"等同于 "1>/dev/null"
+		因此，>/dev/null 2>&1也可以写成“1> /dev/null 2> &1”
+		PS:Command >/dev/null 2>&1 相当于stdout="/dev/null"
+		stderr="$stdout" 这时，stderr也等于"/dev/null"了 
+		结果是标准输出和标准错误都指向了/dev/null， 也就是所有的输出都被我们丢弃 
+		Command 2>&1 >/dev/null 相当于stderr="$stdout" stderr指向了屏幕，因为stdout这时还是指向屏幕！stdout="/dev/null" stdout指向了/dev/null，但不会影响到 stderr的指向 
+		结果是标准错误仍然被打印到屏幕上， 而标准输出被丢弃A=100; B=A和 B=A, A=100
+		
+系统信息监控及脚本
+	free -m
+	系统使用内存=Total-free
+	应用使用内存=Total-(Free+Cached+Buffers)
+	cache：缓存打开的文件 最少使用原则
+	buffers：缓存目录、iNode文件 先进先出原则
+	
+	top -n 1 -b 读取负载	
+	
+Shell典型应用之nginx和mysql应用状态分析
+	网络命令ping
+	nslookkup 检查dns
+	nm-tool、tracertroute、telnet nc 路由 网络
+	dig 
+	curl	http相应
+	监控进程 ps /netstart pgrep
+		
+监控nginx脚本
+		#!/bin/bash
+		Resettem=$(tput sgr0)
+		Nginxserver='http://x.x.x.x/nginx_status'
+		Check_Nginx_Server()
+		{
+		Status_Code=$(curl -m 5 -s -w %{http_code} ${Nginxserver} -o /dev/null)
+		if [ $Status_Code -eq 000 -o $Status_Code -ge 500 ]
+		then
+		echo -e '\E[32m' "Check http server error! Response status code is" $Resettem $Status_code
+		else
+		Http_content=$(curl -s ${Nginxserver})
+		echo -e '\E[32m' "Check http server ok! \n" $Resettem $Http_content
+		fi
+		}
+
+		Check_Nginx_Server		
+		
+		
+Shell典型应用之应用日志分析
+	系统日志文件分为三种：一般日志文件（var/log/messages、var/log/secure、var/log/demsg）、
+	应用服务（access·log、Mysqld·log、xfer·log）、
+	脚本（开发语言CC++、框架Django MVC servlet、脚本语言php Python）		
+	
+	$remote_addr 是指IP，[$time_local]是当下时间，$request是指URL，$status是状态，$body_bytes_send是发送字节数，
+	$Http_refer是指上一页的链接,$Http_user_agent是URL的头,$Http_x_forwarded_for是指真实的IP	
+	
+	HTTP状态码意义:<br>
+	1服务器收到请求,需要请求者继续操作
+	2成功 
+	3重定向 
+	4客户端错误 
+	5服务器错误	
+	
+	grep -i 不区分大小写
+			 -o 精确的输出
+			 -E 正则
