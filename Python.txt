@@ -1,0 +1,36 @@
+﻿1.Linux 默认安装python，建议安装IPython；
+2. sudo apt-get install ipython安装Ipython（可以自动补齐）；
+3.使用VI来创建.py文
+
+Python 源文件常见的两种编译方式：
+- python -m py_compile xxx.py 编译成字节码文件 后缀为 .pyc
+- python -O -m py_compile xxx.py 编译成字节码文件 后缀为 .pyo
+
+追加 append()
+插入 insert()
+删除pop()
+tuple 用()把元素括起来
+L = ['Adam', 'Lisa', 'Bart']
+for name in L:
+    print name
+dict{key:value}
+set.add()
+set.remove()
+
+>>> L[::2]
+第三个参数表示每N个取一个，上面的 L[::2] 会每两个元素取出一个来，也就是隔一个取一个。
+
+字符串有个方法 upper() 可以把字符变成大写字母：
+>>> 'abc'.upper()
+'ABC'
+
+1. 有序集合：list，tuple，str和unicode；
+2. 无序集合：set
+3. 无序集合并且具有 key-value 对：dict
+
+range(1,100) 集合
+对于有序集合，元素确实是有索引的。有的时候，我们确实想在 for 循环中拿到索引，怎么办？
+方法是使用 enumerate() 函数：
+dict 对象有一个 values() 方法  itervalues() 所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
+
+在Python中，for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，任何可迭代对象都可以作用于for循环，而内部如何迭代我们通常并不用关心。
