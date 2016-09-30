@@ -23,7 +23,7 @@ set.remove()
 字符串有个方法 upper() 可以把字符变成大写字母：
 >>> 'abc'.upper()
 'ABC'
-
+lower() 变成小写
 1. 有序集合：list，tuple，str和unicode；
 2. 无序集合：set
 3. 无序集合并且具有 key-value 对：dict
@@ -34,3 +34,39 @@ range(1,100) 集合
 dict 对象有一个 values() 方法  itervalues() 所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
 
 在Python中，for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，任何可迭代对象都可以作用于for循环，而内部如何迭代我们通常并不用关心。
+
+和 values() 有一个 itervalues() 类似， items() 也有一个对应的 iteritems()，iteritems() 不把dict转换成list，而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。
+>>> [x * x for x in range(1, 11)]
+[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+
+这种写法就是Python特有的列表生成式。利用列表生成式，可以以非常简洁的代码生成 list。
+ isinstance(x, str) 可以判断变量 x 是否是字符串；
+ 
+利用map()函数，可以把一个 list 转换为另一个 list，只需要传入转换函数。
+reduce()传入的函数 f 必须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。
+filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
+s.strip(rm) 删除 s 字符串中开头
+sorted]() 倒序排序
+像这种内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为闭包（Closure） 
+关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数。 map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+要让 @log 自适应任何参数定义的函数，可以利用Python的 *args 和 **kw，保证任意个数的参数总是能正常调用：
+def log(f):
+    def fn(*args, **kw):
+        print 'call ' + f.__name__ + '()...'
+        return f(*args, **kw)
+    return fn 
+@functools.wraps(f)自动化完成这个“复制”的任务：、
+functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2：
+
+>>> import functools
+>>> int2 = functools.partial(int, base=2) 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
