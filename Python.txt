@@ -59,7 +59,22 @@ def log(f):
 functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2：
 
 >>> import functools
->>> int2 = functools.partial(int, base=2) 
+>>> int2 = functools.partial(int, base=2)
+
+.py文件的文件名就是模块名，如a.py的模块名为a
+1、引用完整的模块：在代码上方引用 import 包名.模块名 （如 import p1.a ）
+2、完整调用模块的函数：模块名.函数名() （如 p1.a.f(2,10) ）
+3、在文件系统中，包就是文件夹，模块就是xxx.py文件，包可以有多级
+4、在Python中，包下面必须要有【__init__.py】文件，且每层都必须要有！
+只有这样Python才能将一个目录当成一个包来处理
+
+安装第三方模块：
+1、将pip.exe所在路径添加到环境变量path中
+2、在https://pypi.python.org网站中查找第三方模块名（例：xxx.py）
+3、在DOS下安装第三方模块：执行 pip install xxx.py
+
+from __future__ import division 引入新版本的的功能
+ 
  
  
  
