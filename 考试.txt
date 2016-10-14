@@ -1,0 +1,14 @@
+	public static String cDiv(int s1, int x1, int s2, int x2){//完成该函数功能，不需要写main()调用函数，系统会自动调用
+		  double real = (getMultiply(s1,s2)+getMultiply(x1,x2))/(getSquare(s2,x2));
+		  double image = (getMultiply(x1,s2)-getMultiply(s1,x2))/(getSquare(s2,x2));
+		  String result = new StringBuffer().append(real).append("+").append(image).append("i").toString();
+		  return result;
+		  
+		}
+
+	public static double getSquare(int a, int b){
+			return (double)(a * a + b * b);
+		}
+	public static int getMultiply(int a, int b){
+			return a * b;
+		}

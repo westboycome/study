@@ -1,87 +1,120 @@
-﻿1.Linux 默认安装python，建议安装IPython；
-2. sudo apt-get install ipython安装Ipython（可以自动补齐）；
-3.使用VI来创建.py文
+﻿		1.Linux 默认安装python，建议安装IPython；
+		2. sudo apt-get install ipython安装Ipython（可以自动补齐）；
+		3.使用VI来创建.py文
 
-Python 源文件常见的两种编译方式：
-- python -m py_compile xxx.py 编译成字节码文件 后缀为 .pyc
-- python -O -m py_compile xxx.py 编译成字节码文件 后缀为 .pyo
+		Python 源文件常见的两种编译方式：
+		- python -m py_compile xxx.py 编译成字节码文件 后缀为 .pyc
+		- python -O -m py_compile xxx.py 编译成字节码文件 后缀为 .pyo
 
-追加 append()
-插入 insert()
-删除pop()
-tuple 用()把元素括起来
-L = ['Adam', 'Lisa', 'Bart']
-for name in L:
-    print name
-dict{key:value}
-set.add()
-set.remove()
+		追加 append()
+		插入 insert()
+		删除pop()
+		tuple 用()把元素括起来
+		L = ['Adam', 'Lisa', 'Bart']
+		for name in L:
+		    print name
+		dict{key:value}
+		set.add()
+		set.remove()
 
->>> L[::2]
-第三个参数表示每N个取一个，上面的 L[::2] 会每两个元素取出一个来，也就是隔一个取一个。
+		>>> L[::2]
+		第三个参数表示每N个取一个，上面的 L[::2] 会每两个元素取出一个来，也就是隔一个取一个。
 
-字符串有个方法 upper() 可以把字符变成大写字母：
->>> 'abc'.upper()
-'ABC'
-lower() 变成小写
-1. 有序集合：list，tuple，str和unicode；
-2. 无序集合：set
-3. 无序集合并且具有 key-value 对：dict
+		字符串有个方法 upper() 可以把字符变成大写字母：
+		>>> 'abc'.upper()
+		'ABC'
+		lower() 变成小写
+		1. 有序集合：list，tuple，str和unicode；
+		2. 无序集合：set
+		3. 无序集合并且具有 key-value 对：dict
 
-range(1,100) 集合
-对于有序集合，元素确实是有索引的。有的时候，我们确实想在 for 循环中拿到索引，怎么办？
-方法是使用 enumerate() 函数：
-dict 对象有一个 values() 方法  itervalues() 所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
+		range(1,100) 集合
+		对于有序集合，元素确实是有索引的。有的时候，我们确实想在 for 循环中拿到索引，怎么办？
+		方法是使用 enumerate() 函数：
+		dict 对象有一个 values() 方法  itervalues() 所以 itervalues() 方法比 values() 方法节省了生成 list 所需的内存。
 
-在Python中，for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，任何可迭代对象都可以作用于for循环，而内部如何迭代我们通常并不用关心。
+		在Python中，for 循环可作用的迭代对象远不止 list，tuple，str，unicode，dict等，任何可迭代对象都可以作用于for循环，
+		而内部如何迭代我们通常并不用关心。和 values() 有一个 itervalues() 类似， items() 也有一个对应的 iteritems()，
+		iteritems() 不把dict转换成list，而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。
 
-和 values() 有一个 itervalues() 类似， items() 也有一个对应的 iteritems()，iteritems() 不把dict转换成list，而是在迭代过程中不断给出 tuple，所以， iteritems() 不占用额外的内存。
->>> [x * x for x in range(1, 11)]
-[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+		>>> [x * x for x in range(1, 11)]
+		[1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 
-这种写法就是Python特有的列表生成式。利用列表生成式，可以以非常简洁的代码生成 list。
- isinstance(x, str) 可以判断变量 x 是否是字符串；
- 
-利用map()函数，可以把一个 list 转换为另一个 list，只需要传入转换函数。
-reduce()传入的函数 f 必须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。
-filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
-s.strip(rm) 删除 s 字符串中开头
-sorted]() 倒序排序
-像这种内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为闭包（Closure） 
-关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数。 map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]) 
-要让 @log 自适应任何参数定义的函数，可以利用Python的 *args 和 **kw，保证任意个数的参数总是能正常调用：
-def log(f):
-    def fn(*args, **kw):
-        print 'call ' + f.__name__ + '()...'
-        return f(*args, **kw)
-    return fn 
-@functools.wraps(f)自动化完成这个“复制”的任务：、
-functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2：
+		这种写法就是Python特有的列表生成式。利用列表生成式，可以以非常简洁的代码生成 list。
+		 isinstance(x, str) 可以判断变量 x 是否是字符串；
+		 
+		利用map()函数，可以把一个 list 转换为另一个 list，只需要传入转换函数。
+		reduce()传入的函数 f 必须接收两个参数，reduce()对list的每个元素反复调用函数f，并返回最终结果值。
+		filter()函数接收一个函数 f 和一个list，这个函数 f 的作用是对每个元素进行判断，返回 True或 False，filter()根据判断结果自动过滤掉不符合条件的元素，返回由符合条件元素组成的新list。
+		s.strip(rm) 删除 s 字符串中开头
+		sorted]() 倒序排序
+		像这种内层函数引用了外层函数的变量（参数也算变量），然后返回内层函数的情况，称为闭包（Closure） 
 
->>> import functools
->>> int2 = functools.partial(int, base=2)
+		关键字lambda 表示匿名函数，冒号前面的 x 表示函数参数。 map(lambda x: x * x, [1, 2, 3, 4, 5, 6, 7, 8, 9]) 
+		要让 @log 自适应任何参数定义的函数，可以利用Python的 *args 和 **kw，保证任意个数的参数总是能正常调用：
+		def log(f):
+		    def fn(*args, **kw):
+		        print 'call ' + f.__name__ + '()...'
+		        return f(*args, **kw)
+		    return fn 
+		@functools.wraps(f)自动化完成这个“复制”的任务：、
+		functools.partial就是帮助我们创建一个偏函数的，不需要我们自己定义int2()，可以直接使用下面的代码创建一个新的函数int2：
 
-.py文件的文件名就是模块名，如a.py的模块名为a
-1、引用完整的模块：在代码上方引用 import 包名.模块名 （如 import p1.a ）
-2、完整调用模块的函数：模块名.函数名() （如 p1.a.f(2,10) ）
-3、在文件系统中，包就是文件夹，模块就是xxx.py文件，包可以有多级
-4、在Python中，包下面必须要有【__init__.py】文件，且每层都必须要有！
-只有这样Python才能将一个目录当成一个包来处理
+		>>> import functools
+		>>> int2 = functools.partial(int, base=2)
 
-安装第三方模块：
-1、将pip.exe所在路径添加到环境变量path中
-2、在https://pypi.python.org网站中查找第三方模块名（例：xxx.py）
-3、在DOS下安装第三方模块：执行 pip install xxx.py
+		.py文件的文件名就是模块名，如a.py的模块名为a
+		1、引用完整的模块：在代码上方引用 import 包名.模块名 （如 import p1.a ）
+		2、完整调用模块的函数：模块名.函数名() （如 p1.a.f(2,10) ）
+		3、在文件系统中，包就是文件夹，模块就是xxx.py文件，包可以有多级
+		4、在Python中，包下面必须要有【__init__.py】文件，且每层都必须要有！
+		只有这样Python才能将一个目录当成一个包来处理
 
-from __future__ import division 引入新版本的的功能
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+		安装第三方模块：
+		1、将pip.exe所在路径添加到环境变量path中
+		2、在https://pypi.python.org网站中查找第三方模块名（例：xxx.py）
+		3、在DOS下安装第三方模块：执行 pip install xxx.py
+
+		from __future__ import division 引入新版本的的功能
+
+		函数isinstance()可以判断一个变量的类型，既可以用在Python内置的数据类型如str、list、dict，也可以用在我们自定义的类，它们本质上都是数据类型。
+		由于Python的动态特性，json.load()并不一定要从一个File对象读取内容。任何对象，只要有read()方法，就称为File-like Object，都可以传给json.load()
+		
+		type()获取变量的类型
+		dir() 变量的所有属性
+		getattr(s, 'name')  # 获取name属性
+		setattr(s, 'name', 'Adam')  # 设置新的name属性
+		 
+		Python 文件打开方式
+
+		name: 文件路径
+		mode: 打开方式
+		buf:  缓冲buffering大小
+
+		Python 读取方式
+
+		文件读取方式
+		read([size]): 读取文件，默认读取全部
+		readline([size]): 读取一行
+		readlines([size]): 读取完文件，返回每一行所组成的列表
+
+		文件写入方式
+		write(str): 将字符串写入文件
+		writelines(sequence): 写多行到文件
+
+		文件打开方式
+		r:  只读方式打开[文件必须存在]
+		w:  只写方式打开[文件不存在则创建文件 文件存在则清空文件内容]
+		a:  追加方式打开[文件不存在则创建文件]
+		r+: 读写方式打开
+		a+: 追加读写方式打开
+		rb: 二进制方式打开 
+		 
+		readlines([size])，每次只能读取8192字节左右的行 (Memory Buffer)
+		利用迭代器iter()，来遍历文件内容 
+		 
+		 
+		 
+		 
+		 
+		 
