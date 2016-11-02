@@ -1,7 +1,40 @@
+/*import java.util.regex.Matcher;
+import java.util.regex.Pattern;*/
+
+
+public class Test {
+	/**
+	 * @param args
+	 * @author yixun-xiaoheizi
+	 * @deprecated
+	 */
+	
+	public static void main(String[] args) {
+		//System.out.println(cDiv(8, -9, -5, 18));
+		//System.out.println(pipei("asdfghjkl","adsd"));
+		//System.out.println(LowerUpperCase("Miss li is a Teacher"));
+		//System.out.println(isNumber("32.8"));
+		System.out.println(isNumbers("-19"));
+		System.out.println(isNumbers("19"));
+		System.out.println(isNumbers("-19.067756"));
+		System.out.println(isNumbers("19.067756"));
+		System.out.println(isNumbers("sd"));
+		//System.out.println(Hanzi("afadfsaf尉1234asdf"));
+		//System.out.println(SplitDemo("123 fdsf d fs fsd"));
+		//System.out.println(Demo(2));
+		//System.out.println(woniu(22));
+		//System.out.println(nixunzifucchuan("abc 123de"));
+		//System.out.println(hanxindianbin(2, 1, 6));
+		//System.out.println(tenToSixteen(64));
+		//System.out.println(getSeason(6));
+//		System.out.println(convertToUpperCase("good monering"));
+//		System.out.println(convertToLowerCase("GHDHU SFHS HDCH"));
+		//System.out.println(reverseSentence("world hello am i"));
+	}
 	public static String cDiv(int s1, int x1, int s2, int x2){//完成该函数功能，不需要写main()调用函数，系统会自动调用
 		  double real = (getMultiply(s1,s2)+getMultiply(x1,x2))/(getSquare(s2,x2));
 		  double image = (getMultiply(x1,s2)-getMultiply(s1,x2))/(getSquare(s2,x2));
-		  String result = new StringBuffer().append(real).append("+").append(image).append("i").toString();
+		  String result = new StringBuffer().append("复数之商为").append(real).append("+").append(image).append("i").toString();
 		  return result;
 		  
 		}
@@ -12,3 +45,274 @@
 	public static int getMultiply(int a, int b){
 			return a * b;
 		}
+	
+	public static String pipei(String a, String b){
+		String msg = null;
+		if(a == null || b == null || a.length() < b.length()){
+			return "error";
+		}
+		int inde = a.indexOf(b);
+		if(inde != -1){
+			msg="a中包含b";
+		}else{
+			msg="a中不包含b";
+		}
+		return msg;
+	}
+	
+	/*
+	 * . 字符串中大小写字母互换
+	输入:String s 字符串
+	输出:public static String LowerUpperCase(String s) 完成该函数，字符串中大小写字母互换
+	举例:函数输入"Miss li is a Teacher",应正确返回"mISS LI IS A tEACHER"
+	 * */
+	public static String LowerUpperCase(String s){
+	    StringBuffer sb = new StringBuffer();  
+	    if(s!=null){  
+	        for(int i=0;i<s.length();i++){  
+	            char c = s.charAt(i);  
+	            if(Character.isUpperCase(c)){  
+	                sb.append(Character.toLowerCase(c));  
+	            }else if(Character.isLowerCase(c)){  
+	                sb.append(Character.toUpperCase(c));   
+	            }else{
+	            	sb.append(" ");
+	            }
+	        }  
+	    }  	      
+	    return sb.toString(); 
+	}
+	
+	/*
+	 * 判断输入的字符串是否是数字。
+	 * */
+	public static String isNumbers(String str){
+		StringBuffer msg=new StringBuffer();
+		//Boolean strResult = str.matches("-?[0-9]+.*[0-9]*");
+		Boolean strResult = str.matches("^([0-9]*|d*.d{1}?d*)$");
+		if(strResult == true){
+			msg.append(str).append(" is not number");
+		}else{
+			msg.append(str).append(" is number");
+		}
+		return msg.toString();
+	}
+	
+	public static String isNumber(String str){
+		StringBuffer msg=new StringBuffer();
+		if (!"".equals(str)) {  
+			   char num[] = str.toCharArray();//把字符串转换为字符数组  
+			   StringBuffer title = new StringBuffer();//使用StringBuffer类，把非数字放到title中  
+			   StringBuffer hire = new StringBuffer();//把数字放到hire中  
+			  
+			   for (int i = 0; i < num.length; i++) {  
+			  // 判断输入的数字是否为数字还是字符  
+			    if (Character.isDigit(num[i])) { 
+			        hire.append(num[i]);// 如果输入的是数字，把它赋给hire  
+			    } else {  
+			     title.append(num[i]);// 如果输入的是字符，把它赋给title  
+			    }  
+			}  
+			if(title.length() > 0){
+				msg.append(str).append(" is not number");
+			}else{
+				msg.append(str).append(" is number");
+			}
+		}
+		return msg.toString();
+	}	
+	
+	/*统计一行字符串中汉字的个数。*/
+	public static String Hanzi(String n){
+		String E1 = "[\u4e00-\u9fa5]";
+        int chineseCount = 0;
+        String temp;
+        for (int i = 0; i < n.length(); i++)
+        {
+            temp = String.valueOf(n.charAt(i));
+            if (temp.matches(E1))
+            {
+                chineseCount++;
+            }
+        }
+		return "Hanzi:"+ chineseCount; 		
+	}
+	
+	/*去除字符串中的空格*/
+	public static String SplitDemo(String s){
+		String str = "";
+        /*if (s!=null) {
+            Pattern p = Pattern.compile("\\s*|\t|\r|\n");//去除空格、回车、换行符、制表符
+            Matcher m = p.matcher(s);
+            str = m.replaceAll("");
+        }*/
+		str=s.replaceAll(" ", "");
+        return str;
+	}
+	
+	//小光棍树
+	public static String Demo(long m){
+		long str = 0;
+		if(m <= 1000000000){
+			 str = 471 + 1000*(m-1);
+		}
+		return Long.toString(str);
+	}
+	
+	//小蜗牛
+	public static String woniu(int h){
+		int count = 0;
+		if(h == 0){
+			return "0";
+		}else if(h <= 10){
+			return "1";
+		}else{
+			count = h/5;
+		}
+		return String.valueOf(count);
+	}
+	
+	public static String nixunzifucchuan(String str){
+		char[] array = str.toCharArray();
+		StringBuffer buff = new StringBuffer();
+		int n = array.length;
+		for (int i = n-1; i >= 0; i--) {
+			if(Character.isLetter(array[i])){
+				buff.append(array[i]);
+			}
+		}
+		return buff.toString();
+	}
+	
+	//点兵
+	public static String hanxindianbin(int a, int b, int c){
+		if (a >= 3 || b >= 5 || c>= 7){
+			return "No answer";
+		}
+		int d=0;
+		for (int i = 10; i < 101; i++) {
+			if(i%3==a && i%5==b && i%7==c){
+				d=i;
+				break;
+			}
+		}
+		return String.valueOf(d);
+	}
+	
+	//进制转换
+	public static String tenToSixteen(int i){
+		Integer.toBinaryString(i);//十进制转成二进制 
+		Integer.toOctalString(i);//十进制转成八进制 
+		Integer.toHexString(i);//十进制转成十六进制：
+		//Integer.parseInt("");
+		Integer.valueOf("1010",2).toString();//二进制转十进制
+		Integer.valueOf("125",8).toString(); //八进制转成十进制 
+		Integer.valueOf("01011",16).toString(); //十六进制转成十进制 
+		String str = Integer.toHexString(Integer.valueOf("1001011", 2));//二进制数据转换成十六进制数据
+		Integer.toBinaryString(Integer.valueOf("4b",16));//16进制数据转换成2进制数据
+		return str;
+	}
+	
+	//一年四季
+	public static String getSeason(int m){
+		int[][] arrray = {{3,4,5},{6,7,8},{9,10,11},{12,1,2}};
+		String[] str = {"Spring","Summer","Autumn","Winter"};
+		int se =0;
+		for (int i = 0; i < arrray.length; i++) {
+			for (int j = 0; j < arrray[i].length; j++) {
+				if(arrray[i][j] == m){
+					se = i;
+				}
+			}
+		}
+		StringBuffer bb = new StringBuffer();
+		bb.append(m).append("月属于").append(str[se]);
+		return bb.toString();
+	}
+	
+	//转大写
+	public static String convertToUpperCase(String s){
+		return s.toUpperCase();
+	}
+	
+	//转小写
+	public static String convertToLowerCase(String s){
+		 return s.toLowerCase(); 
+	}
+	
+	//句子单词的顺序翻转
+	public static String reverseSentence(String str){
+		char[] a = str.toCharArray();
+		System.out.println(a.length);
+		swap(a,0,a.length-1);
+		
+		int blank = -1;//前一个空格的位置
+		for(int i=0;i<a.length;i++)
+		{
+			if(a[i]==' ')
+			{
+				int nextBlank = i;//后一个空格的位置
+				swap(a,blank+1,nextBlank-1);
+				blank=nextBlank;
+			}else if(i == a.length-1){
+				int nextBlank = i;//后一个空格的位置
+				swap(a,blank+1,nextBlank);
+				blank=nextBlank;
+			}
+		}
+		
+		return (new String(a));
+	}
+	/**
+	 * 交换位置
+	 * @param c
+	 * @param begin
+	 * @param end
+	 */
+	public static void swap(char[] c,int begin, int end)
+	{
+		while(begin<end)
+		{
+			char temp = c[begin];
+			c[begin]=c[end];
+			c[end]=temp;
+			begin++;
+			end--;
+		}
+	}
+	
+	public static String Hanzi2(String n){
+		String str = "a12中国3@b&4语*言3c";
+		 
+        String E1 = "[\u4e00-\u9fa5]";// 中文
+        String E2 = "[a-zA-Z]";// 英文
+        String E3 = "[0-9]";// 数字
+ 
+        int chineseCount = 0;
+        int englishCount = 0;
+        int numberCount = 0;
+ 
+        String temp;
+        for (int i = 0; i < str.length(); i++)
+        {
+            temp = String.valueOf(str.charAt(i));
+            if (temp.matches(E1))
+            {
+                chineseCount++;
+            }
+            if (temp.matches(E2))
+            {
+                englishCount++;
+            }
+            if (temp.matches(E3))
+            {
+                numberCount++;
+            }
+        }
+        System.out.println("汉字数:" + chineseCount);
+        System.out.println("英文数:" + englishCount);
+        System.out.println("数字数:" + numberCount);
+		return "Hanzi:"; 
+		}
+	
+}
