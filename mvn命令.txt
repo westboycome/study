@@ -5,6 +5,10 @@ mvn -v 版本
 -clean 清除maven生成的target目录
 -install 将生成的jar安装到本地仓库中
 
+mvn clean test"，"mvn clean package"，"mvn clean install"
+mvn clean install ，执行安装命令前，会先执行编译、测试、打包命令
+java -cp target\myapp-1.0-SNAPSHOT.jar com.mycompany.app.App，
+
 
 maven创建目录的两种方式
 1.archetype:generate 按照提示进行选择
@@ -17,9 +21,7 @@ mvn archetype:generate -DgroupId:组织名，
 公司域名反写+项目名 -DartifactId：项目名-模块名 
 -Dversion:版本 -Dpackage:包名。一次性创建。
 列如：
-mvn archetype:generate -DgroupId=com.imooc.maven04 
--DartifactId=maven04-demo -Dversion=1.0.0-SNAPSHOT 
--Dpackage=com.imooc.maven04-demo
+mvn archetype:generate -DgroupId=com.imooc.maven04 -DartifactId=maven04-demo -Dversion=1.0.0-SNAPSHOT -Dpackage=com.imooc.maven04-demo
 
 1.坐标 能够唯一标识平面中的一点，
 基本坐标groupId artifactId version，还有packing、classifier，
@@ -106,4 +108,20 @@ organization：组织信息
 如果路径长度相同，则谁先声明，先解析谁
 
 聚合和继承
+
+创建JavaWeb项目
+mvn archetype:generate -DgroupId=com.xiaoheizi.maven04 -DartifactId=my-WebApp -DarchetypeArtifactId=maven-archetype-webapp -DinteractiveMode=false
+mvn archetype:create -DgroupId=com.xiaoheizi.maven04 -DartifactId=system-parent -Dversion=1.0.0-SNAPSHOT -Dpackage=com.xiaohizi.maven04-demo -DinteractiveMode=false
+
+
+
+
+
+
+
+
+
+
+
+
 
