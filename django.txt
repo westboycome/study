@@ -1,0 +1,10 @@
+﻿安装django pip install Django==1.10.5
+创建项目 python-admin startproject projectName
+创建应用 python manage.py startapp appName
+启动服务器 python manage.py runserver
+生成数据表 python manage.py makemigrations app名(可选)
+					 python manage.py migrate
+查看SQL语句 python manage.py sqlmigrate 应用名 文件id
+第三方软件打开sql数据库 SQLite Expert Personal
+
+创建用户 python manage.py createsuperuser
