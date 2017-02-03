@@ -35,5 +35,11 @@ undo表空间---对数据操作前进行保存
 	alter tablespace test2_tablespace
 	drop datafile 'test2_file.dbf'
 
+修改字段名:alter table table_name rename column column to new_column_name;
 
+修改表名:rename table_name to new_table_name;
+
+删除表中全部数据 truncate table table_name;
+
+删除整张表数据 drop table table_name;
  	
