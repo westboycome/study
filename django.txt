@@ -8,3 +8,10 @@
 第三方软件打开sql数据库 SQLite Expert Personal
 
 创建用户 python manage.py createsuperuser
+
+模板for循环
+{%for xx in xxs%}
+	HTML语句
+{%endfor%}
+{% csrf_token%}
+
