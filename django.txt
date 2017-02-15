@@ -14,4 +14,8 @@
 	HTML语句
 {%endfor%}
 {% csrf_token%}
+过滤器 {{value | filter}}
+python manage.py shell
 
+
+python manage.py changepassword username  改密码
