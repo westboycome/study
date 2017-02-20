@@ -4,7 +4,7 @@ ALTER DATABASE name CHARACTER=utf-8;修改格式
 DROP DATABASE name;删除数据库
 SHOW WARNINGS; 查询警告
  USE name;打开数据库
- SLECT DATABASE();查在哪个库
+ SELECT DATABASE();查在哪个库
  SHOW CREATE TABLE name; 查询信息
  SHOW COLUMNS FROM tb（表名）;
  AUTO_INCREMENT 自动编号

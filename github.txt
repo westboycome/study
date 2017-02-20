@@ -10,3 +10,30 @@ git commit -m ""
 git push -u origin master
 
 git pull
+
+git config --global user.name ""
+git config --global user.email ""
+ gti clone
+ git init
+ git status
+ git diff --cached 看看缓存区中哪些文件被修改了
+ git branch命令可以查看当前的分支列表
+ git branch name 创建分支
+ git checkout 分支名可以切换到其他分支
+ echo "update" >> file 修改文件内容 追加
+ git merge -m "" 分支名  令来合并experimental到主线分支master
+ git branch -d experimental 删除分支
+ git reset --hard HEAD^ 撤销合并
+ git log --stat 打印详细的提交记录
+ git log --pretty=oneline
+ git log --pretty=short
+ git log --graph 选项可以可视化你的提交图
+ git log --topo-order 日志排序
+ 
+ git diff experimental --stat git diff test --stat
+ git pull /tmp/myrepo master 这就把myrepo的主分支合并到了gitproject的当前分支里了
+ git remote add myrepo /tmp/myrepo 定义它们的缩写
+ 
+ git rebase origin
+  git grep -n xmmap 搜索
+  git grep --name-only xmmap 只显示文件名
