@@ -180,7 +180,26 @@
 		\W	匹配任何非单词字符。等价于 '[^A-Za-z0-9_]'。
 
 		  
+		 D.copy()拷贝
+		 D.deepcopy()深拷贝
+		 标准库简介
+		 正则表达式（re包）
+		 时间与日期（time。datatime包）
+		 路径与文件（os.path包，glob包）
+		 文件管理（os,shutil包）
+		 存储对象（pickle,cPickle包）
+		 信号（signal包）
+		 线程同步（threading包）
+		 进程信息（os包）
+		 多进程初步（multiprocessing包）
+		 数学（math包）
+		 随机数（random）
+		 循环器（itertools包）
+		 数据库（sqlite3)
 		 
-		 
+		 上下文管理器 __enter__() __exit()__
+		 内存状况 用sys包中getrefcount（param)函数
+		 内存管理 gc.set_threshold()
+		 				gc.get_threshold()
 		 
 		 
