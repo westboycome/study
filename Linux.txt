@@ -488,7 +488,19 @@ Java Platform
 	ps -e | grep ssh 
 
 
-		
+	查看当前是哪一个进程占用了8888端口
+	lsof -i:8888
+	根据进程id查看进程的具体信息
+	ps axu|grep 2643
+	查看Linux服务器的版本
+	lsb_release -a
+	查看当前iptables(防火墙)规则
+	iptables –L –n
+	添加指定端口到防火墙中
+　　iptables -I INPUT -p 协议 --dport 端口号 -j ACCEPT
+　　例如：
+ 		iptables -I INPUT -p udp --dport 161 -j ACCEPT
+ 		iptables -I INPUT -p tcp --dport 8080 -j ACCEPT
 
 
 
