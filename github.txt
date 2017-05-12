@@ -9,7 +9,7 @@ git add .
 git commit -m ""
 git push -u origin master
 
-git pull
+git pull ¸üÐÂ
 
 git config --global user.name ""
 git config --global user.email ""
