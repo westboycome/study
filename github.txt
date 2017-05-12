@@ -2,7 +2,7 @@
 find . name ".git" | xargs rm -Rf
 下载远程仓库
 git clone git@github.com:westboycome/study.git
-上传本地仓库
+上传本地仓库到服务器
 git remote add origin git@github.com:westboycome/study.git
 提交更新
 git add .
@@ -10,6 +10,7 @@ git commit -m ""
 git push -u origin master
 
 git pull 更新
+git pull --rebase origin master 进行代码合并
 
 git config --global user.name ""
 git config --global user.email ""
