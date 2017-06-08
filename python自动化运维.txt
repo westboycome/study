@@ -1,0 +1,127 @@
+﻿psutil
+	源码安转：wget https://pypi.python.org/packages/source/p/psutil/psutil-2.0.0.tar.gz
+cpu信息：
+	pustil.cpu_times()
+	psutil.cpu_count() # 获取CPU 的逻辑个数，默认logical=True4
+	psutil.cpu_times().user # 获取单项数据信息，如用户user 的CPU 时间比
+	psutil.cpu_count(logical=False) # 获取CPU 的物理个数
+内存信息:
+	psutil.virtual_memory() # 使用psutil.virtual_memory 方法获取内存完整信息
+	psutil.swap_memory() # 获取SWAP 分区信息
+磁盘信息:
+	psutil.disk_partitions() # 使用psutil.disk_partitions 方法获取磁盘完整信息
+	psutil.disk_usage('/') 方法获取分区( 参数) 的使用情况
+	psutil.disk_io_counters 获取硬盘总的IO 个数、读写信息
+	psutil.disk_io_counters(perdisk=True) #“perdisk=True”参数获取单个分区IO 个数、读写信息
+网络信息:
+	psutil.net_io_counters 获取网络总的IO 信息，默认pernic=False,pernic=True 输出每个网络接口的IO 信息
+其他系统信息:	
+	psutil.users 方法返回当前登录系统的用户信息
+进程信息:	
+	psutil.pids() # 列出所有进程PID
+	p = psutil.Process(2424) # 实例化一个Process 对象，参数为一进程PID
+	p.name() # 进程名
+	p.exe() # 进程bin 路径
+	p.cwd() # 进程工作目录绝对路径
+	p.status() # 进程状态
+	p.create_time() # 进程创建时间，时间戳格式
+	p.uids() # 进程uid 信息
+	p.gids() # 进程gid 信息
+	p.cpu_times() # 进程CPU 时间信息，包括user、system 两个CPU 时间
+	p.cpu_affinity() #get 进程CPU 亲和度，如要设置进程CPU 亲和度，将CPU 号作为参数即可
+	p.memory_percent() # 进程内存利用率
+	p.memory_info() # 进程内存rss、vms 信息
+	p.io_counters() # 进程IO 信息，包括读写IO 数及字节数
+	>>>p.connections() # 返回打开进程socket 的namedutples 列表，包括fs、family、laddr等信息
+	p.num_threads() # 进程开启的线程数
+	
+psutil 提供的popen 类的作用是获取用户启动的应用程序进程信息，以便跟踪程序进程的运行状态	
+	IPy 模块的安装
+		wget https://pypi.python.org/packages/source/I/IPy/IPy-0.81.tar.gz
+		
+		ip = IP('192.168.1.20')
+		ip.reverseNames() # 反向解析地址格式
+		ip.iptype() 类型
+		IP("8.8.8.8").int() # 转换成整型格式
+		IP('8.8.8.8').strHex() # 转换成十六进制格式
+		IP('8.8.8.8').strBin() # 转换成二进制格式、
+		print(IP(0x8080808)) # 十六进制转成IP 格式
+		
+通过strNormal 方法指定不同wantprefixlen 参数值以定制不同输出类型的网段
+		IP('192.168.1.0/24').strNormal(0)
+		wantprefixlen = 0，无返回，如 192.168.1.0；
+		wantprefixlen = 1，prefix 格式，如 192.168.1.0/24；
+		wantprefixlen = 2，decimalnetmask 格式，如 192.168.1.0/255.255.255.0；
+		wantprefixlen = 3，lastIP 格式，如 192.168.1.0-192.168.1.255
+		
+	判断IP 地址和网段是否包含于另一个网段中
+		'192.168.1.100' in IP('192.168.1.0/24')
+		IP('192.168.1.0/24') in IP('192.168.0.0/16')
+	判断两个网段是否存在重叠
+	IP('192.168.0.0/23').overlaps('192.168.1.0/24')
+		1 # 返回1 代表存在重叠
+	IP('192.168.1.0/24').overlaps('192.168.2.0')
+		0 # 返回0 代表不存在重叠
+		
+dnspython 模块的安装--域名的查询
+	http://www.dnspython.org/kits/1.9.4/dnspython-1.9.4.tar.gz	
+	
+	单文件对比，采用 filecmp.cmp(f1, f2[, shallow]) 方法，比较文件名为 f1 和 f2 的文件，
+	相同返回True，不相同返回False，shallow 默认为True，
+	多文件对比，采用 filecmp.cmpfiles(dir1, dir2, common[, shallow]) 方法
+		filecmp.cmpfiles("/home/test/filecmp/dir1","/home/test/filecmp/dir2",['f1','f2','f3','f4','f5'])
+		(['f1', 'f2'], ['f3'], ['f4', 'f5'])
+	目录对比，通过 dircmp(a, b[, ignore[, hide]]) 类创建一个目录比较对象，其中 a 和 b 是参加比较的目录名
+		report()，比较当前指定目录中的内容；
+		report_partial_closure()，比较当前指定目录及第一级子目录中的内容；
+		第2章　业务服务监控详解　　23
+		report_full_closure()，递归比较所有指定目录的内容。
+		为输出更加详细的比较结果，dircmp 类还提供了以下属性：
+		left，左目录，如类定义中的 a；
+		right，右目录，如类定义中的 b；
+		left_list，左目录中的文件及目录列表；
+		right_list，右目录中的文件及目录列表；
+		common，两边目录共同存在的文件或目录；
+		left_only，只在左目录中的文件或目录；
+		right_only，只在右目录中的文件或目录；
+		common_dirs，两边目录都存在的子目录；
+		common_files，两边目录都存在的子文件；
+		common_funny，两边目录都存在的子目录（不同目录类型或 os.stat() 记录的错误）；
+		same_files，匹配相同的文件；
+		diff_files，不匹配的文件；
+		funny_files，两边目录中都存在，但无法比较的文件；
+		subdirs，将 common_dirs 目录名映射到新的 dircmp 对象，格式为字典类型。
+		
+		dirobj=filecmp.dircmp(a,b,['test.py']) # 目录比较
+		dirobj.report()
+		...
+
+SMTP 类定义：smtplib.SMTP([host[, port[, local_hostname[, timeout]]]])，		
+		SMTP.connect([host[, port]]) 方法，连接远程 smtp 主机方法，host 为远程主机地址，
+		port 为远程主机smtp 端口，默认25，也可以直接使用host:port 形式来表示，例如：
+		SMTP.connect（“smtp.163.com”，“25”）。
+		SMTP.login(user, password) 方法，远程 smtp 主机的校验方法，参数为用户名与密码，
+			如SMTP.login（“python_2014@163.com”，“sdjkg358”）。
+		SMTP.sendmail(from_addr, to_addrs, msg[, mail_options, rcpt_options]) 方 法， 实 现 邮
+				件的发送功能，参数依次为是发件人、收件人、邮件内容，例如：SMTP.sendmail
+			（“python_2014@163.com”，“demo@domail.com”，body）
+		SMTP.starttls([keyfile[, certfile]]) 方法，启用 TLS（安全传输）模式，所有 SMTP 指令都将加密传输，
+		SMTP.quit() 方法，断开 smtp 服务器的连接。
+		
+		比如通过MIMEText：
+		server = smtplib.SMTP() # 创建一个SMTP() 对象
+		server.connect(HOST,"25") # 通过connect 方法连接smtp 主机
+		server.starttls() # 启动安全传输模式
+		server.login("mymail@gmail.com","mypassword") # 邮箱账号登录校验
+		server.sendmail(FROM, TO, msg.as_string()) # 邮件发送
+		server.quit() # 断开smtp 连接
+		print " 邮件发送成功！ "
+		
+		通过MIMEText 与MIMEImage MIMEMultipart类的组合
+		
+pycurl 模块
+		wget http://curl.haxx.se/download/curl-7.36.0.tar.gz
+XlsxWriter 模块		
+		curl -O -L http://github.com/jmcnamara/XlsxWriter/archive/master.tar.gz
+		
+		

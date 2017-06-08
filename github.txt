@@ -38,3 +38,22 @@ git config --global user.email ""
  git rebase origin
   git grep -n xmmap 搜索
   git grep --name-only xmmap 只显示文件名
+ -------------- 
+	git init
+　　git add .
+　　git commit -m 'first_commit'
+　　git remote add origin https://github.com/findingsea/myRepoForBlog.git
+　　git push origin master
+
+如果执行git remote add origin https://github.com/findingsea/myRepoForBlog.git，出现错误：
+fatal: remote origin already exists
+则执行以下语句：git remote rm origin
+
+再往后执行git remote add origin https://github.com/findingsea/myRepoForBlog.git 即可。
+
+在执行git push origin master时，报错：
+error:failed to push som refs to.......
+ 
+则执行以下语句：
+git pull origin master
+

@@ -456,6 +456,7 @@ Java Platform
 	/boot 启动分区，200MB，建议单独分区，若该包含该目录的分区空间不足可能使系统起不来
 
 
+
 	sudo apt-get update
 	sudo apt-get install vim 安转vim
 	cc -v 检查版本
