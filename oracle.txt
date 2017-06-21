@@ -42,4 +42,13 @@ undo表空间---对数据操作前进行保存
 删除表中全部数据 truncate table table_name;
 
 删除整张表数据 drop table table_name;
- 	
+
+create user username identified by password;
+grant dba to username;
+select * from user_sys_privs;
+
+grant create session to zhangsan;//授予zhangsan用户创建session的权限，即登陆权限
+
+grant unlimited tablespace to zhangsan;//授予zhangsan用户使用表空间的权限
+
+grant create table to zhangsan;//授予创建表的权限 	
