@@ -1,0 +1,22 @@
+源码地址：
+https://github.com/requests/requests
+
+http://docs.python-requests.org/en/master/
+
+http://httpbin.org/
+
+pip install requests
+pip install gunicorn
+pip install gunicorn httpbin
+
+windows下gunicorn httpbin出现ImportError: No module named fcntl错误的是少了fcntl模块。
+百度ImportError: No module named fcntl下载一个。
+解压后，将fcntl.py文件放到PYTHONPATH路径即可，我是放到了Python27\Lib目录
+http://download.csdn.net/detail/qust008/7677769
+
+即做服务端也做客户端
+gunicorn httpbin:app
+
+virtualenv XXX #XXX为创建虚拟环境的文件名字
+（win）切换到键入 XXX\scripts\activate 激活虚拟环境
+（unix）source XXX/bin/activate
