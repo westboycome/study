@@ -178,8 +178,6 @@
 		\S	匹配任何非空白字符。等价于 [^ \f\n\r\t\v]。
 		\w	匹配包括下划线的任何单词字符。等价于'[A-Za-z0-9_]'。
 		\W	匹配任何非单词字符。等价于 '[^A-Za-z0-9_]'。
-
-<<<<<<< HEAD
 		  
 		 D.copy()拷贝
 		 D.deepcopy()深拷贝
@@ -197,7 +195,7 @@
 		 随机数（random）
 		 循环器（itertools包）
 		 数据库（sqlite3)
-=======
+
 SymPy库简介与解线性方程的实现
 		安装sympy sudo pip install sympy
 		加号 +
@@ -215,10 +213,7 @@ SymPy库简介与解线性方程的实现
 		integrate函数用于积分问题
 		y' diff(f(x),x,1) 1阶倒数
 		dsolve函数是用来解决微分方程
-		 Matrix矩阵表示
-		 
-		
->>>>>>> aa8c3500d0c7be3b8438d21bcb0afc92b3e32e89
+		 Matrix矩阵表示		 
 		 
 		 上下文管理器 __enter__() __exit()__
 		 内存状况 用sys包中getrefcount（param)函数
