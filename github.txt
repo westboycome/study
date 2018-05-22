@@ -1,59 +1,76 @@
-É¾³ıÎÄµµ
+GitHub æ·»åŠ  SSH keys
+é¦–å…ˆåœ¨æœ¬åœ°åˆ›å»º SSH Keys
+$ ssh-keygen -t rsa -C "18817801185@163.com"
+
+åé¢çš„é‚®ç®±å³ä¸º github æ³¨å†Œé‚®ç®±ï¼Œä¹‹åä¼šè¦æ±‚ç¡®è®¤è·¯å¾„å’Œè¾“å…¥å¯†ç ï¼Œä¸€è·¯å›è½¦å°±è¡Œã€‚
+æˆåŠŸçš„è¯ä¼šåœ¨ ~/ ä¸‹ç”Ÿæˆ .sshæ–‡ä»¶å¤¹ï¼Œè¿›å»ï¼Œæ‰“å¼€ id_rsa.pubï¼Œå¤åˆ¶é‡Œé¢çš„keyã€‚
+å¤åˆ¶å…¨éƒ¨å†…å®¹ï¼Œæ‰“å¼€ GitHub ä¸»é¡µï¼Œå·¦ä¾§é€‰æ‹© SSH and GPG Keysï¼Œ ç‚¹å‡» Add SSH Keysï¼Œç„¶åè¾“å…¥åç§°ï¼Œå¹¶å°†å¤åˆ¶çš„å†…å®¹ç²˜è´´è¿‡æ¥ï¼Œæ·»åŠ å³å¯ã€‚
+
+éªŒè¯ SSH Keys æ˜¯å¦æ·»åŠ æˆåŠŸ
+$ ssh -T git@github.com
+
+å¦‚æœæ˜¯ç¬¬ä¸€æ¬¡çš„ä¼šæç¤ºæ˜¯å¦continueï¼Œè¾“å…¥yeså°±ä¼šçœ‹åˆ°ï¼šYou've successfully authenticated, but GitHub does not provide shell access ã€‚è¿™å°±è¡¨ç¤ºå·²æˆåŠŸè¿ä¸Šgithubã€‚
+æ¥ä¸‹æ¥æˆ‘ä»¬è¦åšçš„å°±æ˜¯æŠŠæœ¬åœ°ä»“åº“ä¼ åˆ°githubä¸Šå»ï¼Œåœ¨æ­¤ä¹‹å‰è¿˜éœ€è¦è®¾ç½®usernameå’Œemailï¼Œå› ä¸ºgithubæ¯æ¬¡commitéƒ½ä¼šè®°å½•ä»–ä»¬ã€‚
+
+ $ git config --global user.name 'wangxi'
+ $ git config --global user.email 18817801185@163.com
+
+åˆ é™¤æ–‡æ¡£
 find . name ".git" | xargs rm -Rf
-ÏÂÔØÔ¶³Ì²Ö¿â
+ä¸‹è½½è¿œç¨‹ä»“åº“
 git clone git@github.com:westboycome/study.git
-ÉÏ´«±¾µØ²Ö¿âµ½·şÎñÆ÷
+ä¸Šä¼ æœ¬åœ°ä»“åº“åˆ°æœåŠ¡å™¨
 git remote add origin git@github.com:westboycome/study.git
-Ìá½»¸üĞÂ
+æäº¤æ›´æ–°
 git add .
 git commit -m ""
 git push -u origin master
 
-git pull ¸üĞÂ
-git pull --rebase origin master ½øĞĞ´úÂëºÏ²¢
+git pull æ›´æ–°
+git pull --rebase origin master è¿›è¡Œä»£ç åˆå¹¶
 
 git config --global user.name ""
 git config --global user.email ""
  gti clone
  git init
  git status
- git diff --cached ¿´¿´»º´æÇøÖĞÄÄĞ©ÎÄ¼ş±»ĞŞ¸ÄÁË
- git branchÃüÁî¿ÉÒÔ²é¿´µ±Ç°µÄ·ÖÖ§ÁĞ±í
- git branch name ´´½¨·ÖÖ§
- git checkout ·ÖÖ§Ãû¿ÉÒÔÇĞ»»µ½ÆäËû·ÖÖ§
- echo "update" >> file ĞŞ¸ÄÎÄ¼şÄÚÈİ ×·¼Ó
- git merge -m "" ·ÖÖ§Ãû  ÁîÀ´ºÏ²¢experimentalµ½Ö÷Ïß·ÖÖ§master
- git branch -d experimental É¾³ı·ÖÖ§
- git reset --hard HEAD^ ³·ÏúºÏ²¢
- git log --stat ´òÓ¡ÏêÏ¸µÄÌá½»¼ÇÂ¼
+ git diff --cached çœ‹çœ‹ç¼“å­˜åŒºä¸­å“ªäº›æ–‡ä»¶è¢«ä¿®æ”¹äº†
+ git branchå‘½ä»¤å¯ä»¥æŸ¥çœ‹å½“å‰çš„åˆ†æ”¯åˆ—è¡¨
+ git branch name åˆ›å»ºåˆ†æ”¯
+ git checkout åˆ†æ”¯åå¯ä»¥åˆ‡æ¢åˆ°å…¶ä»–åˆ†æ”¯
+ echo "update" >> file ä¿®æ”¹æ–‡ä»¶å†…å®¹ è¿½åŠ 
+ git merge -m "" åˆ†æ”¯å  ä»¤æ¥åˆå¹¶experimentalåˆ°ä¸»çº¿åˆ†æ”¯master
+ git branch -d experimental åˆ é™¤åˆ†æ”¯
+ git reset --hard HEAD^ æ’¤é”€åˆå¹¶
+ git log --stat æ‰“å°è¯¦ç»†çš„æäº¤è®°å½•
  git log --pretty=oneline
  git log --pretty=short
- git log --graph Ñ¡Ïî¿ÉÒÔ¿ÉÊÓ»¯ÄãµÄÌá½»Í¼
- git log --topo-order ÈÕÖ¾ÅÅĞò
+ git log --graph é€‰é¡¹å¯ä»¥å¯è§†åŒ–ä½ çš„æäº¤å›¾
+ git log --topo-order æ—¥å¿—æ’åº
  
  git diff experimental --stat git diff test --stat
- git pull /tmp/myrepo master Õâ¾Í°ÑmyrepoµÄÖ÷·ÖÖ§ºÏ²¢µ½ÁËgitprojectµÄµ±Ç°·ÖÖ§ÀïÁË
- git remote add myrepo /tmp/myrepo ¶¨ÒåËüÃÇµÄËõĞ´
+ git pull /tmp/myrepo master è¿™å°±æŠŠmyrepoçš„ä¸»åˆ†æ”¯åˆå¹¶åˆ°äº†gitprojectçš„å½“å‰åˆ†æ”¯é‡Œäº†
+ git remote add myrepo /tmp/myrepo å®šä¹‰å®ƒä»¬çš„ç¼©å†™
  
  git rebase origin
-  git grep -n xmmap ËÑË÷
-  git grep --name-only xmmap Ö»ÏÔÊ¾ÎÄ¼şÃû
+  git grep -n xmmap æœç´¢
+  git grep --name-only xmmap åªæ˜¾ç¤ºæ–‡ä»¶å
  -------------- 
 	git init
-¡¡¡¡git add .
-¡¡¡¡git commit -m 'first_commit'
-¡¡¡¡git remote add origin https://github.com/findingsea/myRepoForBlog.git
-¡¡¡¡git push origin master
+ã€€ã€€git add .
+ã€€ã€€git commit -m 'first_commit'
+ã€€ã€€git remote add origin https://github.com/findingsea/myRepoForBlog.git
+ã€€ã€€git push origin master
 
-Èç¹ûÖ´ĞĞgit remote add origin https://github.com/findingsea/myRepoForBlog.git£¬³öÏÖ´íÎó£º
+å¦‚æœæ‰§è¡Œgit remote add origin https://github.com/findingsea/myRepoForBlog.gitï¼Œå‡ºç°é”™è¯¯ï¼š
 fatal: remote origin already exists
-ÔòÖ´ĞĞÒÔÏÂÓï¾ä£ºgit remote rm origin
+åˆ™æ‰§è¡Œä»¥ä¸‹è¯­å¥ï¼šgit remote rm origin
 
-ÔÙÍùºóÖ´ĞĞgit remote add origin https://github.com/findingsea/myRepoForBlog.git ¼´¿É¡£
+å†å¾€åæ‰§è¡Œgit remote add origin https://github.com/findingsea/myRepoForBlog.git å³å¯ã€‚
 
-ÔÚÖ´ĞĞgit push origin masterÊ±£¬±¨´í£º
+åœ¨æ‰§è¡Œgit push origin masteræ—¶ï¼ŒæŠ¥é”™ï¼š
 error:failed to push som refs to.......
  
-ÔòÖ´ĞĞÒÔÏÂÓï¾ä£º
+åˆ™æ‰§è¡Œä»¥ä¸‹è¯­å¥ï¼š
 git pull origin master
 
